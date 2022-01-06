@@ -23,75 +23,92 @@ import Admincontactus from "./components/Admincontactus";
 function App() {
   return (
     <>
-    <Router>
-      <Header ></Header>
-     
+    <Router>     
         <Switch>
       
           <Route exact path="/about">
-            <AboutUs></AboutUs>
+          <Header ></Header>
+          <AboutUs></AboutUs>
           </Route>
 
           <Route exact path="/signup">
-            <Signup></Signup>
+          <Header ></Header>
+          <Signup></Signup>
           </Route>
 
           <Route exact path="/login" >
-            <Login ></Login>
+          <Header ></Header>
+          <Login ></Login>
           </Route>
 
         <Route exact path="/allblog/:tag">
-          <Posts></Posts>
+        <Header ></Header>
+        <Posts></Posts>
         </Route>
         <Route exact path="/allblog/search/:search">
+        <Header ></Header>
         <Posts></Posts>
       </Route>
         <Route exact path="/allblog">
-          <Posts></Posts>
+        <Header ></Header>
+        <Posts></Posts>
         </Route>
         <Route exact path="/contactus">
-          <Contactus></Contactus>
+        <Header ></Header>
+        <Contactus></Contactus>
         </Route>
         <Route exact path="/admincontactus">
+        <Header ></Header>
         <Admincontactus></Admincontactus>
       </Route>
         <Route exact path="/uploadblog">
-          <Write></Write>
+        <Header ></Header>
+        <Write></Write>
         </Route>
 
         <Route exact path="/post/:id">
-          <Blogdetails ></Blogdetails>
+        <Header ></Header>
+        <Blogdetails ></Blogdetails>
          </Route>
 
          <Route exact path="/forum">
-            <WriteForum></WriteForum>
+         <Header ></Header>
+         <WriteForum></WriteForum>
         </Route>
         <Route exact path="/forum/:id">
-            <ForumDetails></ForumDetails>
+        <Header ></Header>
+        <ForumDetails></ForumDetails>
        </Route>
         <Route exact path="/allforum">
-           <AllForum></AllForum>
+        <Header ></Header>
+        <AllForum></AllForum>
         </Route>
         <Route exact path="/myblogs">
-            <Myblogs></Myblogs>
+        <Header ></Header>
+        <Myblogs></Myblogs>
          </Route>
          <Route exact path="/myforums">
-              <Myforums></Myforums>
+         <Header ></Header>
+         <Myforums></Myforums>
          </Route>
          <Route exact path="/admin">
-              <Admin></Admin>
+         <Header ></Header>
+         <Admin></Admin>
           </Route>
           <Route exact path="/adminsignup">
-            <AdminSignup></AdminSignup>
+          <Header ></Header>
+          <AdminSignup></AdminSignup>
           </Route>
           <Route exact path="/verifyblogs">
-            <VerifyBlogs></VerifyBlogs>
+          <Header ></Header>
+          <VerifyBlogs></VerifyBlogs>
           </Route>
           <Route exact path="/verifyforums">
-            <VerifyForums></VerifyForums>
+          <Header ></Header>
+          <VerifyForums></VerifyForums>
         </Route>
           <Route exact path="/" >
-            <Home></Home>
+          <Home></Home>
           </Route>
     
         </Switch>

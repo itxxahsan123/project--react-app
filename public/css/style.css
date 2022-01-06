@@ -10,7 +10,7 @@ Colors:
 	Dark : #212631
 	Grey : #eceef2 #a7b3c6 #fbfbfd
 
-Fonts: Nunito & Nunito-Sans
+Fonts: grammatika & grammatika-Sans
 
 Table OF Contents
 ------------------------------------
@@ -30,7 +30,7 @@ RESPONSIVE
 	typography
 \*----------------------------*/
  body {
-     font-family: 'Nunito', sans-serif;
+     font-family: 'grammatika', sans-serif;
      font-size: 16px;
      font-weight: 300;
      color: #3d455c;
@@ -39,7 +39,7 @@ RESPONSIVE
      overflow-x: hidden;
 }
  h1, h2, h3, h4, h5, h6 {
-     font-family: 'Nunito Sans', sans-serif;
+     font-family: 'grammatika Sans', sans-serif;
      font-weight: 700;
      color: #212631;
      margin: 0px 0px 15px;
@@ -62,7 +62,7 @@ RESPONSIVE
      text-decoration: none;
 }
  a:hover, a:focus{
-     color: #212631;
+     color: #04ac9c;
      text-decoration: underline;
      outline: none;
 }
@@ -93,7 +93,7 @@ RESPONSIVE
 }
  blockquote.blockquote:before {
      content: "``";
-     font-family: 'Nunito Sans', sans-serif;
+     font-family: 'grammatika Sans', sans-serif;
      display: block;
      position: absolute;
      left: -5px;
@@ -189,7 +189,7 @@ RESPONSIVE
      right: 0;
      top: 0;
      z-index: 90;
-     background-color: #FFF;
+     background-color: rgba(0,0,0,.75);
      -webkit-box-shadow: 0px -1px 0px 0px #eceef2 inset;
      box-shadow: 0px -1px 0px 0px #eceef2 inset;
 }
@@ -277,7 +277,21 @@ RESPONSIVE
      box-shadow: -1px 0px 0px 0px #eceef2 inset;
      -webkit-transition: 0.2s color;
      transition: 0.2s color;
+     color:#fff;
 }
+    .faviconcolor{
+        color:#fff;
+    }
+    .faviconcolor:hover{
+        color:#04ac9c;
+    }
+
+    .nav-btns a {
+        color:#fff;
+    }
+    .nav-btns a:hover {
+        color:#04ac9c;
+    }
  .nav-menu li:first-child a {
      border-left: 1px solid #eceef2;
 }
@@ -307,6 +321,7 @@ RESPONSIVE
  .nav-menu li a:hover, .nav-menu li a:focus {
      background-color: transparent;
      text-decoration: none;
+     color: #04ac9c;
 }
  .nav-menu li.cat-1 a:hover, .nav-menu li.cat-1 a:focus {
      color: #4BB92F;
@@ -378,7 +393,7 @@ RESPONSIVE
      right: 0;
      top: 0;
      bottom: 0;
-     background-color: #fff;
+     background-color:#282828;
      max-width: 360px;
      width: 90%;
      padding: 80px 20px;
@@ -396,9 +411,20 @@ RESPONSIVE
      transform: translateX(0%);
 }
  .nav-aside-menu li a {
-     font-family: 'Nunito Sans', sans-serif;
+     font-family: 'grammatika', sans-serif;
      font-weight:700;
      font-size:23px;
+     color:#888;
+}
+.navasidecolor{
+    color:#888;
+}
+.navasidecolor:hover{
+    color:#04ac9c;
+}
+.nav-aside-menu li a:hover {
+    color:#04ac9c;
+    text-decoration: none;
 }
  .nav-aside-social li {
      display: inline-block;
@@ -873,6 +899,7 @@ RESPONSIVE
  #footer {
      padding-bottom: 5px;
     text-align:center;
+    background-color: rgba(0,0,0,.75);
 }
  #footer .container {
      padding-top: 20px;
@@ -882,18 +909,18 @@ RESPONSIVE
     
 }
  .footer-widget .footer-title {
-    
+    color: rgba(255,255,255,.8);
      text-transform: capitalize;
      font-size: 18px;
 }
  .footer-widget a {
-     color: #a7b3c6;
+     color: rgba(255,255,255,.8);
      -webkit-transition: 0.2s color;
      transition: 0.2s color;
 }
  .footer-widget a:hover, .footer-widget a:focus {
      text-decoration: none;
-     color: #212631;
+     color: #04ac9c;
 }
  .footer-logo {
      margin-bottom: 5px;
@@ -907,7 +934,7 @@ RESPONSIVE
 }
  .footer-copyright {
      margin-top: 20px;
-     color: #a7b3c6;
+     color: rgba(255,255,255,.8);
      font-size: 13px;
 }
  .footer-newsletter form {
@@ -947,14 +974,14 @@ RESPONSIVE
      height: 30px;
      line-height: 30px;
      text-align: center;
-     background-color: #a7b3c6;
+     background-color: rgba(0,0,0,.75);
      color: #FFF;
      border-radius: 2px;
      -webkit-transition: 0.2s opacity;
      transition: 0.2s opacity;
 }
  .footer-social li > a:hover, .footer-social li > a:focus {
-     color: #FFF;
+     color: #04ac9c;
      opacity: 0.9;
 }
 /*=========================================================
@@ -1367,3 +1394,20 @@ input[type=number] {
     display: none;
 }
 }
+.parent {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  .image1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    border: 1px red solid;
+  }
+  .image2 {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    border: 1px green solid;
+  }

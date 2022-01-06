@@ -81,7 +81,7 @@ function Header(props) {
                   showsearch?                
                   <div  style={{"marginTop":"2%"}}>
                     <form onSubmit={(e)=>{searchfunc(e)}} >
-                    <i className="fa fa-times" onClick={()=>{setSearch(false);setSearches('')}}></i>
+                    <i className="faviconcolor fa fa-times" onClick={()=>{setSearch(false);setSearches('')}}></i>
                     <input autoComplete="off" className="search-input" onChange={onChange} type="search" name="search" placeholder="Enter Your Search ..." id="search"/>
                     <button className="search-close" type="submit">Search</button>
                     </form>
@@ -92,8 +92,8 @@ function Header(props) {
                   <a href="https://twitter.com/" target="_blank" className="share-twitter"><i className="fa fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
                   <a href="https://www.linkedin.com" target="_blank" className="share-linkedin"><i className="fa fa-linkedin"></i></a>&nbsp;&nbsp;&nbsp;
                   <a href="https://mail.google.com" target="_blank"><i className="fa fa-envelope"></i></a>&nbsp;&nbsp;&nbsp;
-                  <button className="aside-btn"><i className="fa fa-bars"></i></button>
-                  <button className="search-btn"><i className="fa fa-search" onClick={()=>{setSearch(true)}}></i></button>
+                  <button className="aside-btn"><i className="faviconcolor fa fa-bars"></i></button>
+                  <button className="search-btn"><i className=" faviconcolor fa fa-search" onClick={()=>{setSearch(true)}}></i></button>
                   </>
                 }
               </div>
@@ -133,7 +133,6 @@ function Header(props) {
                  :
                    <>
                      <li ><Link to="/login">Login</Link></li>
-                     <li ><Link to="/signup">Register</Link></li>
                      <li ><Link to="/allblog">All Blogs</Link></li>
                      <li ><Link to="/allforum">All Forums</Link></li>
                      <li><Link to='/contactus'>Contact Us</Link></li>
@@ -143,7 +142,7 @@ function Header(props) {
               </ul>
             </div>
             <div className="section-row">
-              <h3>Recent Posts</h3>
+              <h3 style={{"color":"#888"}}>Recent Posts</h3>
               {
                 (recentBlogs!== undefined || recentBlogs!== [] || recentBlogs!== null) ? recentBlogs.length!=0 ?
                 recentBlogs.map((blog,index)=>{
@@ -154,7 +153,7 @@ function Header(props) {
                           <div className="post post-widget">
                           <Link className="post-img" to={`/post/${blog.id}`}><img src={blog.image} alt="" /></Link>
                           <div className="post-body">
-                            <h3 className="post-title"><Link to={`/post/${blog.id}`} >{blog.title}</Link></h3>
+                            <h3 className="post-title navasidecolor"><Link to={`/post/${blog.id}`} className="navasidecolor">{blog.title}</Link></h3>
                           </div>
                         </div>:''
                         }

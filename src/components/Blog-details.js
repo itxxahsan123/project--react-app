@@ -7,14 +7,17 @@ import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import parse from "html-react-parser";
 import renderHTML from 'react-render-html';
+import FeaturedPost from './FeaturedPost';
+
 toast.configure()
 
 function Blogdetails() {
       const history = useHistory();
       const params = useParams();
-      const [id, setID] = useState(0)
+      const [id, setID] = useState(0) 
       const [loading,setloading] = useState(false);
       const [posts, setPosts] = useState([])
+      const [recommendedPost, setRecommendedPosts] = useState([])
       const[user,setUser] = useState(JSON.parse(localStorage.getItem('blogUser')))
       const [mostReadBlogs, setMostReadBlogs] = useState([]);
       const [featuredblogs, setfeaturedblogs] = useState([]); 
@@ -67,12 +70,23 @@ function Blogdetails() {
           .then(res => {
             setloading(false)
             setPosts(res.data.resData)
+            getRecommendedBlogsByTag(res.data.resData.tag);
           })
           .catch(err =>{
             setloading(false)
               console.log(err)
           })
     }
+    function getRecommendedBlogsByTag(tag)
+    {
+        Axios.get(`${process.env.React_App_Api_Url}/api/blog/getblogbycategory?tag=${tag}`).then(blogs => {
+            console.log('blog by category',blogs);
+           setRecommendedPosts(blogs.data.resData);
+           setloading(false);
+          }).catch(err => {
+            setloading(false);
+          });
+          }
     function getBlogByIdSamePage(e,id)
     {
         setloading(true)
@@ -243,7 +257,42 @@ function Blogdetails() {
             </div>
         </div>
     </div>
-    </>
+    <div className="section section-grey">
+    {loading?<div class="loading"></div>:''} 
+    <div className="container">
+      <div className="row">
+        <div className="col-md-12">
+          <div className="section-title text-center">
+            <h2>Recommended Posts</h2>
+          </div>
+        </div>
+            {recommendedPost.length!=0 ? recommendedPost.map( (featuredblog,index) => {
+              return (
+                <>
+                {
+                    index<3 ?                     
+                <div className="col-md-4" href="#">
+                    <div className="post">
+                         <Link className="post-img" to={`/post/${featuredblog.id}`}><img src={featuredblog.image} alt="" style={{"height":"176px"}}/></Link>
+                         <div className="post-body">
+                           <div className="post-meta">
+                             <Link className="post-category cat-2" to={`/post/${featuredblog.id}`}>{featuredblog.tag}</Link>
+                             <span className="post-date">{splitDate(featuredblog.updatedAt)}</span>
+                           </div>
+                           <h3 className="post-title"><Link to={`/post/${featuredblog.id}`}>{featuredblog.title}</Link></h3>
+                         </div>
+                       </div>
+                  </div>           :''
+
+                }
+
+                  </> 
+                )}
+            ):<div>No Featured Blogs</div>} 
+      </div>
+    </div>
+  </div> 
+      </>
     )
 }
 

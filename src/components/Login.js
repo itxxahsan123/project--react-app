@@ -215,9 +215,12 @@ function LoginComp (){
                                     </div>
                                 </div>
                                 <div className="col-md-12">
-                                    <button type="submit" className="primary-button">Submit</button>
+                                    <button type="submit" className="primary-button">Sign In</button>
                                 </div>
                                 </form>
+                                <div className="col-md-12">
+                                <p>Dont have an account? <Link to="/signup">Sign Up</Link></p>
+                                </div>
                             </div>
                     </div>
                 </div>

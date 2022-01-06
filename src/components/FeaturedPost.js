@@ -61,7 +61,7 @@ function FeaturedPost() {
                                <h3 className="post-title"><Link to={`/post/${featuredblog.id}`}>{featuredblog.title}</Link></h3>
                              </div>
                            </div>
-                      </div>           :'No featured posts.'
+                      </div>           :''
 
                     }
 

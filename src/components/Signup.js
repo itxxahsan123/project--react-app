@@ -146,10 +146,13 @@ function SignupComp(e) {
                                     </div>
                                 </div>
                                 <div className="col-md-12">
-                                    <button className="primary-button" >Submit</button>
+                                    <button className="primary-button" >Sign Up</button>
                                 </div>
                             </div>
                         </form>
+                        <div className="col-md-12">
+                        <p>Already have an account? <Link to="/login">Sign In</Link></p>
+                        </div>
                     </div>
                 </div>
             </div>

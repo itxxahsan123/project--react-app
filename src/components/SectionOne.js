@@ -5,6 +5,9 @@ import {toast} from 'react-toastify';
 import { Carousel } from "react-responsive-carousel";
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
+import Header from './header';
+import parse from "html-react-parser";
+
 toast.configure()
 function SectionOne () {
 
@@ -57,19 +60,20 @@ function SectionOne () {
   
     return (
    <>
-    <Carousel infiniteLoop={true} showIndicators={false} showThumbs={false} showStatus={false} autoPlay dynamicHeight={false}>
-        <div >
-              <img src="./img/banner6.jpeg" alt="" />
+    <Carousel infiniteLoop={true} showIndicators={false} showThumbs={false} showStatus={false} autoPlay dynamicHeight={false} style={{"height":"360px"}}>
+        <div className="parent">
+        <img src="./img/bannernew.jpg" alt="" className="image1"/>
+        <img src="./img/logo.png" alt="" className="image2"/>
           </div>
-          <div >
+         {/* <div >
               <img src="./img/banner7.jpeg" alt="" />
           </div>
           <div >
               <img src="./img/banner8.jpeg" alt="" />
-        </div>
+         </div>*/}
     </Carousel>
-
-   <div className="section" >
+    <Header ></Header>
+    <div className="section" >
    {loading?<div class="loading"></div>:''} 
      <div className="container">   
        <div className="row">
@@ -131,7 +135,8 @@ function SectionOne () {
                       <span className="post-date">{splitDate(recentblog.updatedAt)}</span>
                     </div>
                     <h3 className="post-title" ><Link to={`/post/${recentblog.id}`}>{recentblog.title}</Link></h3>
-                    </div>
+          {/*<p>{parse(recentblog.text.substring(0, 300))}</p>*/}
+          </div>
                     </div>
                     </div>:''
                 }         
