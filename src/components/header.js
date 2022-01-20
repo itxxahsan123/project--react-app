@@ -5,7 +5,7 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
 import CarouselC from "../components/carousel";
-
+import $ from 'jquery';
 toast.configure()
 function Header(props) {
   const [recentBlogs, setrecentBlogs] = useState([]);
@@ -14,6 +14,12 @@ function Header(props) {
   const [search, setSearches] = useState('');
   var token = JSON.parse(localStorage.getItem('blogUser'));
   const history = useHistory();
+
+	$('.nav-aside-close').on('click', function () {
+		$('#nav-aside').removeClass('active');
+		$('#nav').removeClass('shadow-active');
+	});
+
   function logOut()
   {
     localStorage.clear();
@@ -53,7 +59,7 @@ function Header(props) {
               </div>
    
               <ul className="nav-menu nav navbar-nav">
-              <li ><Link to="/">Home</Link></li>
+                  <li ><Link to="/">Home</Link></li>
                 { token ?
                   <>
                     {
@@ -102,47 +108,47 @@ function Header(props) {
           <div id="nav-aside">
             <div className="section-row">
               <ul className="nav-aside-menu">
-                <li><Link to="/">Home</Link></li>
+                <li  className="nav-aside-close"><Link to="/">HOME</Link></li>
                 {token?
                   <>
                   {
                     token.role==='admin'?
                     <>
-                    <li ><Link to="/allblog">All Blogs</Link></li>
-                    <li ><Link to="/allforum">All Forums</Link></li>
-                    <li ><Link to="/adminsignup">Admin Signup</Link></li>
-                    <li ><Link to="/admin">Users</Link></li>
-                    <li ><Link to="/verifyblogs">Blogs</Link></li>
-                    <li ><Link to="/verifyforums">Forums</Link></li>
-                    <li ><Link to="/admincontactus">Contact Us</Link></li>
-                    <li><Link to='/about'>About Us</Link></li>
-                    <li ><Link to="/login" onClick={logOut}>Log out</Link></li>
+                    <li className="nav-aside-close"><Link to="/allblog" className="close">All BLOGS</Link></li>
+                    <li className="nav-aside-close"><Link to="/allforum" className="close">All FORUMS</Link></li>
+                    <li className="nav-aside-close"><Link to="/adminsignup" className="close">ADMIN SIGNUP</Link></li>
+                    <li className="nav-aside-close"><Link to="/admin" className="close">USERS</Link></li>
+                    <li className="nav-aside-close"><Link to="/verifyblogs" className="close">BLOGS</Link></li>
+                    <li className="nav-aside-close"><Link to="/verifyforums" className="close">FORUMS</Link></li>
+                    <li className="nav-aside-close"><Link to="/admincontactus" className="close">CONTACT US</Link></li>
+                    <li className="nav-aside-close"><Link to='/about' className="close">ABOUT US</Link></li>
+                    <li className="nav-aside-close"><Link to="/login" onClick={logOut} className="close">LOG OUT</Link></li>
                     </>
                     :<>
-                    <li ><Link to="/login" >Edit Profile</Link></li>
-                    <li ><Link to="/allblog">All Blogs</Link></li>
-                    <li ><Link to="/allforum">All Forums</Link></li>
-                    <li ><Link to="/myblogs">My Blogs</Link></li>
-                    <li ><Link to="/myforums">My Forums</Link></li>
-                    <li><Link to='/contactus'>Contact Us</Link></li>
-                    <li><Link to='/about'>About Us</Link></li>
-                    <li ><Link to="/login" onClick={logOut}>Log out</Link></li>
+                    <li className="nav-aside-close"><Link to="/login" >EDIT PROFILE</Link></li>
+                    <li className="nav-aside-close"><Link to="/allblog">ALL BLOGS</Link></li>
+                    <li className="nav-aside-close"><Link to="/allforum">ALL FORUMS</Link></li>
+                    <li className="nav-aside-close"><Link to="/myblogs">MY BLOGS</Link></li>
+                    <li className="nav-aside-close"><Link to="/myforums">MY FORUMS</Link></li>
+                    <li className="nav-aside-close"><Link to='/contactus'>CONTACT US</Link></li>
+                    <li className="nav-aside-close"><Link to='/about'>ABOUT US</Link></li>
+                    <li className="nav-aside-close"><Link to="/login" onClick={logOut}>LOG OUT</Link></li>
                     </>
                   }
                   </>
                  :
                    <>
-                     <li ><Link to="/login">Login</Link></li>
-                     <li ><Link to="/allblog">All Blogs</Link></li>
-                     <li ><Link to="/allforum">All Forums</Link></li>
-                     <li><Link to='/contactus'>Contact Us</Link></li>
-                     <li><Link to='/about'>About Us</Link></li>
+                     <li className="nav-aside-close"><Link to="/login">LOGIN</Link></li>
+                     <li className="nav-aside-close"><Link to="/allblog">ALL BLOGS</Link></li>
+                     <li className="nav-aside-close"><Link to="/allforum">ALL FORUMS</Link></li>
+                     <li className="nav-aside-close"><Link to='/contactus'>CONTACT US</Link></li>
+                     <li className="nav-aside-close"><Link to='/about'>ABOUT US</Link></li>
                    </>}
 
               </ul>
             </div>
             <div className="section-row">
-              <h3 style={{"color":"#888"}}>Recent Posts</h3>
+              <h3 style={{"color":"#888"}}>RECENT POSTS</h3>
               {
                 (recentBlogs!== undefined || recentBlogs!== [] || recentBlogs!== null) ? recentBlogs.length!=0 ?
                 recentBlogs.map((blog,index)=>{
@@ -172,7 +178,7 @@ function Header(props) {
                 <li><a href="#"><i className="fa fa-pinterest"></i></a></li>
               </ul>*/}
             </div>
-             {/*<button className="nav-aside-close"><i className="fa fa-times"></i></button>*/}
+            {/*} <button className="nav-aside-close"><i className="faviconcolor fa fa-times"></i></button>*/}
           </div>
         </div>
       </header>

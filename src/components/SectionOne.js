@@ -16,6 +16,11 @@ function SectionOne () {
   const [featuredblogs, setfeaturedblogs] = useState([]);  
   const [loading,setloading] =useState(false);
   const history = useHistory();
+  function richtextToplaintext(str)
+  {
+    var plainString = str.replace(/<[^>]+>/g, '');
+    return plainString;
+  }
   function splitDate(x)
   {
       let y = x.split('T');
@@ -62,7 +67,7 @@ function SectionOne () {
    <>
     <Carousel infiniteLoop={true} showIndicators={false} showThumbs={false} showStatus={false} autoPlay dynamicHeight={false} style={{"height":"360px"}}>
         <div className="parent">
-        <img src="./img/bannernew.jpg" alt="" className="image1"/>
+        <img src="./img/bannernew2.jpeg" alt="" className="image1"/>
         <img src="./img/logo.png" alt="" className="image2"/>
           </div>
          {/* <div >
@@ -135,7 +140,7 @@ function SectionOne () {
                       <span className="post-date">{splitDate(recentblog.updatedAt)}</span>
                     </div>
                     <h3 className="post-title" ><Link to={`/post/${recentblog.id}`}>{recentblog.title}</Link></h3>
-          {/*<p>{parse(recentblog.text.substring(0, 300))}</p>*/}
+                <p >{richtextToplaintext(recentblog.text).substring(0, 200)}.....<Link to={`/post/${recentblog.id}`}>Read More</Link></p>
           </div>
                     </div>
                     </div>:''
@@ -187,7 +192,8 @@ function SectionOne () {
                               <span className="post-date">{splitDate(recentblog.updatedAt)}</span>
                             </div>
                             <h3 className="post-title"><Link to={`/post/${recentblog.id}`}>{recentblog.title}</Link></h3>
-                          </div>
+                <p >{richtextToplaintext(recentblog.text).substring(0, 200)}.....<Link to={`/post/${recentblog.id}`}>Read More</Link></p>
+                </div>
                         </div>
                       </div>   
                       </>

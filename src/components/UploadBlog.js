@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useHistory } from 'react-router-dom';
-
+import imageCompression from 'browser-image-compression';
 toast.configure()
 function UploadBlog() {
   const [dataUri, setDataUri] = useState('')
@@ -20,11 +20,17 @@ function UploadBlog() {
  
   function uploadAdapter(loader) {
     return {
-      upload: () => {
-        return new Promise((resolve, reject) => {
-          loader.file.then((file) => {
+      upload: async () => {
+        return new Promise(async (resolve, reject) => {
+          loader.file.then(async (file) => {
+            const options = {
+              maxSizeMB: 1,
+              maxWidthOrHeight: 400,
+              useWebWorker: true
+            }
+            const compressedFile = await imageCompression(file, options);
              const formdata = new FormData();
-                  formdata.append("file", file);
+                  formdata.append("file", compressedFile);
             Axios.post(`${API_URL}`,formdata)
             .then(res=>{
               console.log(res.data.url)
@@ -95,7 +101,7 @@ function UploadBlog() {
           text:text,
           userid:user.id,
           verified:false,
-          tag:blog.tag
+          tag:blog.tag.toLowerCase()
         }).then(res=>{
           toast.success('Blog uploaded successfully. Our Admin will verify it shortly.');
           setBlog({desc:'',title:'',tag:''});
@@ -189,14 +195,13 @@ function UploadBlog() {
                 editor={ClassicEditor}
                 data={text}
                 id="desc"
-                config={{placeholder: "Tell your story...*"}}
+                config={{placeholder: "Tell your story...*",extraPlugins: [uploadPlugin]}}
                 onChange={(event,editor)=>{
                   const data=editor.getData();
                   setText(data);      
                   console.log(text)          
                 }}
                 // config={{ removePlugins: ['MediaEmbed','EasyImage','ImageUpload']}} 
-                config={{  extraPlugins: [uploadPlugin]}}
                 >
               </CKEditor>
             </div>

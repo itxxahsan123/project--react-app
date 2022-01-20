@@ -13,7 +13,12 @@ function Posts() {
     const [posts, setPosts] = useState([]);
   const params = useParams();
   const [loading,setloading] =useState(false);
-  function getBlogByCategory()
+  function richtextToplaintext(str)
+  {
+    var plainString = str.replace(/<[^>]+>/g, '');
+    return plainString;
+  }
+   function getBlogByCategory()
   {
     Axios.get(`${process.env.React_App_Api_Url}/api/blog/getblogbycategory?tag=${params.tag}`).then(blogs => {
       console.log('blog by category',blogs);
@@ -99,7 +104,8 @@ function Posts() {
                     <span className="post-date">{splitDate(recentblog.updatedAt)}</span>
                     </div>
                     <h3 className="post-title" ><Link to={`/post/${recentblog.id}`}>{recentblog.title}</Link></h3>
-                    </div>
+                <span >{richtextToplaintext(recentblog.text).substring(0, 200)}.....<Link to={`/post/${recentblog.id}`}>Read More</Link></span>
+                </div>
                     </div>
                     </div>
                 }         

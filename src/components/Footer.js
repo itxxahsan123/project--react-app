@@ -65,9 +65,9 @@ function Footer() {
                 </div>
                 <div className="col-md-6">
                   <div className="footer-widget">
-                    <h4 className="footer-title">Send A Message</h4>
+                    <h4 className="footer-title">Contact Us</h4>
                     <ul className="footer-links">
-                           <li><Link to="/contactus">Contact Us</Link></li>
+                           <li><Link to="/contactus">Send Us A Message</Link></li>
                     </ul>
                   </div>
                 </div>

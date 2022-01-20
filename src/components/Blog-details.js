@@ -124,7 +124,7 @@ function Blogdetails() {
                             <figure className="figure-img">
                                 <img className="img-responsive" src={posts.image} alt="" />
                             </figure>
-                            <p>{posts.title!==undefined?renderHTML(posts.text):''}</p>
+                            <p>{posts.title!==undefined?renderHTML(posts.text):''} </p>
                             </> :''
                         }
 
@@ -270,7 +270,7 @@ function Blogdetails() {
               return (
                 <>
                 {
-                    index<3 ?                     
+                    index<3 ? featuredblog.id != params.id?                     
                 <div className="col-md-4" href="#">
                     <div className="post">
                          <Link className="post-img" to={`/post/${featuredblog.id}`}><img src={featuredblog.image} alt="" style={{"height":"176px"}}/></Link>
@@ -282,7 +282,7 @@ function Blogdetails() {
                            <h3 className="post-title"><Link to={`/post/${featuredblog.id}`}>{featuredblog.title}</Link></h3>
                          </div>
                        </div>
-                  </div>           :''
+                  </div>           :'':''
 
                 }
 

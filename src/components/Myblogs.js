@@ -9,7 +9,12 @@ function Myblogs() {
     const [recentBlogs, setRecentBlogs] = useState([]);
     const[user,setUser] = useState(JSON.parse(localStorage.getItem('blogUser')))
     const [loading,setloading] =useState(false);
-    function componentDidMount()
+    function richtextToplaintext(str)
+  {
+    var plainString = str.replace(/<[^>]+>/g, '');
+    return plainString;
+  }
+  function componentDidMount()
     {
       Axios.get(`${process.env.React_App_Api_Url}/api/blog/getmyallblog?id=${user.id}`).then(blogs => {
         console.log('All blogs',blogs);
@@ -65,7 +70,8 @@ function Myblogs() {
                                                      
                                                         </div>
                                                     <h3 className="post-title" ><Link to={`/post/${recentblog.id}`}>{recentblog.title}</Link></h3>
-                                                    </div>
+                <p >{richtextToplaintext(recentblog.text).substring(0, 200)}</p>
+                </div>
                                                     </div>
                                                     </div>
                                                 }         

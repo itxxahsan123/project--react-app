@@ -64,7 +64,7 @@ function UploadForum() {
             text:blog.desc,
             userid:user.id,
             verified:false,
-            tag:blog.tag
+            tag:blog.tag.toLowerCase()
           }).then(res=>{
             toast.success('Forum uploaded successfully. Our Admin will verify it shortly.');
             setBlog({desc:'',title:'',tag:''});

@@ -13,7 +13,11 @@ function MostRead () {
   const [tags, settags] = useState([]); 
   const [loading,setloading] =useState(false);
   const history = useHistory();
-
+  function richtextToplaintext(str)
+  {
+    var plainString = str.replace(/<[^>]+>/g, '');
+    return plainString;
+  }
   function componentDidMount(){
     Axios.get(`${process.env.React_App_Api_Url}/api/blog/getmostreadblogs`).then(blogs => {
       console.log('most read',blogs);
@@ -78,7 +82,7 @@ function MostRead () {
                             <span className="post-date">{splitDate(mostReadBlog.updatedAt)}</span>
                           </div>
                           <h3 className="post-title"><Link to={`/post/${mostReadBlog.id}`}>{mostReadBlog.title}</Link></h3>
-                          <p>{parse(mostReadBlog.text.substring(0, 100))}</p>
+                          <p>{richtextToplaintext(mostReadBlog.text).substring(0, 200)}</p>
                           </div>
                         </div>
                       </div>:''}                    
