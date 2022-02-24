@@ -59,7 +59,7 @@ function ShowForum() {
                               return(
                                 <>
                                 {
-                                  index<6?
+                                  
                                   <div className="col-md-6">
                                       <div className="post">     
                                           <Link className="post-img" to={`/forum/${forum.id}`}><img src={forum.image} alt="" style={{"width":"300px","height":"300px"}}/></Link>
@@ -71,7 +71,7 @@ function ShowForum() {
                                                     <h3 className="post-title" ><Link to={`/forum/${forum.id}`}>{forum.title}</Link></h3>
                                             </div>
                                         </div>
-                                    </div>:''
+                                    </div>
                                 }         
                                 </>
                               )

@@ -20,6 +20,10 @@ import { Carousel } from "react-responsive-carousel";
 import Myforums from "./components/Myforums";
 import Contactus from "./pages/Contactus";
 import Admincontactus from "./components/Admincontactus";
+import ForgetPassword from "./components/ForgetPassword";
+import ResetPassword from "./components/ResetPassword";
+import Editblog from "./components/Editblog";
+import VerificationComp from "./components/VerificationComp";
 function App() {
   return (
     <>
@@ -106,6 +110,22 @@ function App() {
           <Route exact path="/verifyforums">
           <Header ></Header>
           <VerifyForums></VerifyForums>
+        </Route>
+         <Route exact path="/forgetpassword">
+            <Header ></Header>
+            <ForgetPassword></ForgetPassword>
+          </Route>
+          <Route exact path="/resetpassword">
+          <Header ></Header>
+          <ResetPassword></ResetPassword>
+        </Route>
+        <Route exact path="/editblog/:id">
+          <Header ></Header>
+          <Editblog></Editblog>
+        </Route>
+        <Route exact path="/verificationpage">
+          <Header ></Header>
+          <VerificationComp></VerificationComp>
         </Route>
           <Route exact path="/" >
           <Home></Home>

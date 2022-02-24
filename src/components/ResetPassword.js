@@ -1,20 +1,22 @@
-import React, {useState} from 'react'
+import React,{ useState } from 'react'
 import Axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import ReCAPTCHA from 'react-google-recaptcha';
 
 toast.configure()
-function SignupComp(e) {
-    const [user, setUserState] = useState({firstName:'',email:'',lastName:'',mobile:'',password:'',role:'customer',userPrivilegeId:2,confirmpassword:''});
+
+function ResetPassword() {
+    const [userProfile, setUserProfile] = useState(JSON.parse(localStorage.getItem('blogUser')));
+    const [user, setUserState] = useState({oldPassword:'',newPassword:'',confirmPassword:'',id:0});
     const [loading,setloading] =useState(false);
-    const [isVerified,setIsVerified] =useState(false);
-    const [showPassword,setShowPassword] =useState(false);
-    const [message, setMessage] = useState({whiteSpace:false,specialCharacter:false,numberPresent:false,
-    lengthGreaterthen8:false,UpperCase:false});
     const history = useHistory();
+    const [isVerified,setIsVerified] =useState(false);
+    const [message, setMessage] = useState({whiteSpace:false,specialCharacter:false,numberPresent:false,
+        lengthGreaterthen8:false,UpperCase:false});
+        const [showPassword,setShowPassword] =useState(false);
     function componentDidMount(e) {
         e.preventDefault();
         setloading(true);
@@ -23,68 +25,50 @@ function SignupComp(e) {
             if(message.whiteSpace === true && message.specialCharacter === true && message.numberPresent === true
                 && message.lengthGreaterthen8 === true && message.UpperCase === true)
              {
-                if(user.mobile.length>8)
+                if(user.newPassword.length>8)
                 {
-                    if(user.password.length>8)
+                    if(user.newPassword  === user.confirmPassword)
                     {
-                        if(user.password  === user.confirmpassword)
-                        {
-                            Axios.post(`${process.env.React_App_Api_Url}/api/user/signup`,{user}).then(res=>{
-                                toast.success('Your account has been successfully created. Our admin will shortly approve your account.');
-                                setloading(false);
-                                history.replace("/verificationpage");
-                            }).catch(err=>{
-                                toast.error(`${err.response.data.message}`);
-                                setloading(false);
-                            })
-                        }
-                        else{
-                            toast.error('Password and Confirm Password mismatch.');
+                        Axios.post(`${process.env.React_App_Api_Url}/api/user/resetpassword`,{user}).then(res=>{
+                            toast.success('Password Updated.');
                             setloading(false);
-                        }
+                            history.replace("/login");
+                        }).catch(err=>{
+                            toast.error(`${err.response.data.message}`);
+                            setloading(false);
+                        })
                     }
                     else{
-                        toast.error('Password length should be greater than 8.');
+                        toast.error('Password and Confirm Password mismatch.');
                         setloading(false);
                     }
                 }
                 else{
-                    toast.error('Mobile number not valid.');
+                    toast.error('Password length should be greater than 8.');
                     setloading(false);
                 }
-             }
-             else
-             {
-                toast.error('Password not valid.');
-                setloading(false);
-             }
-        }
-        else
-        {
-            toast.error('Please verify that you are human.');
-            setloading(false);
-        }
+            }
+            else
+            {
+               toast.error('Password not valid.');
+               setloading(false);
+            }
+       }
+       else
+       {
+           toast.error('Please verify that you are human.');
+           setloading(false);
+       }
     }
     function onChange(e)
     {
         const newUser = {...user};
-        if(e.target.id==='firstName')
+        newUser.id = userProfile.id;
+        if(e.target.id==='oldPassword')
         {
             newUser[e.target.id] = e.target.value
         }
-        if(e.target.id==='lastName')
-        {
-            newUser[e.target.id] = e.target.value
-        }
-        if(e.target.id==='email')
-        {
-            newUser[e.target.id] = e.target.value
-        }
-        if(e.target.id==='mobile')
-        {
-            newUser[e.target.id] = e.target.value
-        }
-        if(e.target.id==='password')
+        if(e.target.id==='newPassword')
         {
             newUser[e.target.id] = e.target.value
             checkWhiteSpace(e.target.value)
@@ -93,7 +77,7 @@ function SignupComp(e) {
             checkSymbol(e.target.value)
             checkLength(e.target.value)
         }
-        if(e.target.id==='confirmpassword')
+        if(e.target.id==='confirmPassword')
         {
             newUser[e.target.id] = e.target.value
         }
@@ -106,10 +90,6 @@ function SignupComp(e) {
         {
             setIsVerified(true);
         }
-    }
-    function validatePassword(password) {
-        const re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,}/
-        return re.test(password);
     }
     function checkWhiteSpace(value)
     {
@@ -182,40 +162,16 @@ function SignupComp(e) {
         }
         setMessage(newUser);
     }
-    function checkPasswordValidity(value) {
-       // const isContainsLowercase = /^(?=.*[a-z]).*$/;
-        // if (!isContainsLowercase.test(value)) {
-        //   return "Password must have at least one Lowercase Character.";
-        // }
-       return null;
-      }
-      
     return (
-        <div>
-        {loading?<div class="loading"></div>:''} 
-        <>
-        {/*<div className="page-header">
-        <div className="container">
-            <div className="row">
-                <div className="col-md-10">
-                    <ul className="page-header-breadcrumb">
-                        <li><Link to="/">Home</Link></li>
-                        <li>Signup</li>
-                    </ul>
-                    <h1>User Registeration</h1>
-                </div>
-            </div>
-        </div>
-    </div>*/}
         <div className="section">
         <div className="container">
             <div className="row">
                 <div className="col-md-6">
                     <div className="section-row">
-                        <h3>Register</h3>
+                        <h3>Reset Password</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         <ul className="list-style">
-                            <li><p><strong>Email:</strong> <a href="#">Webmag@email.com</a></p></li>
+                            <li><p><strong>Email:</strong> <a href="#">Webmag@blog.com</a></p></li>
                             <li><p><strong>Phone:</strong> 213-520-7376</p></li>
                             <li><p><strong>Address:</strong> 3770 Oliver Street</p></li>
                         </ul>
@@ -223,37 +179,21 @@ function SignupComp(e) {
                 </div>
                 <div className="col-md-5 col-md-offset-1">
                     <div className="section-row">
-                        <h3>Signup Information</h3>
-                        <form onSubmit={(e)=>{componentDidMount(e)}}>
+                        <h3>Reset Password</h3>
                             <div className="row">
-                                <div className="col-md-7">
-                                <div className="form-group">
-                                    <span>First Name</span>
-                                    <input autocomplete="off" className="input"  type="text" name="fname" id="firstName" onChange={onChange} required/>
-                                </div>
-                                </div>
-                                <div className="col-md-7">
-                                <div className="form-group">
-                                    <span> Last Name</span>
-                                    <input className="input" autocomplete="off" type="text" name="lname" id="lastName" onChange={onChange} required/>
-                                </div>
-                                </div>
+                            <form onSubmit={(e)=>{componentDidMount(e)}}>
                                 <div className="col-md-7">
                                     <div className="form-group">
-                                        <span>Email</span>
-                                        <input className="input" autocomplete="off" type="email" name="email" id="email" onChange={onChange} required/>
+                                        <span>Old Password</span>
+                                        <input className="input" type={showPassword?"text":"password"} name="email" id="oldPassword" onChange={onChange} required/>
+                                        {!showPassword?(<i className="fa fa-eye-slash mr-3" onClick={(e)=>{setShowPassword(!showPassword)}}></i>):
+                                        (<i className="fa fa-eye mr-3" onClick={(e)=>{setShowPassword(!showPassword)}}></i>)}
                                     </div>
-                                </div>
-                                <div className="col-md-7">
-                                <div className="form-group">
-                                    <span>Mobile</span>
-                                    <input className="input" autocomplete="off" type="number" name="mobile" id="mobile" onChange={onChange} required/>
-                                </div>
                                 </div>
                                 <div className="col-md-7">
                                     <div className="form-group">
                                         <span>Password</span>
-                                        <input className="input" autoComplete="off" type={showPassword?"text":"password"} name="password" id="password" onChange={onChange} required/>
+                                        <input className="input" autoComplete="off" type={showPassword?"text":"password"} name="password" id="newPassword" onChange={onChange} required/>
                                         {!showPassword?(<i className="fa fa-eye-slash mr-3" onClick={(e)=>{setShowPassword(!showPassword)}}></i>):
                                         (<i className="fa fa-eye mr-3" onClick={(e)=>{setShowPassword(!showPassword)}}></i>)}
                                         {
@@ -284,41 +224,36 @@ function SignupComp(e) {
                                     </div>
                                 </div>
                                 <div className="col-md-7">
-                                    <div className="form-group">
-                                        <span>Confrim Password</span>
-                                        <input className="input" autocomplete="off" type={showPassword?"text":"password"} name="confirmPassword" onChange={onChange} id="confirmpassword" required/>
-                                        {!showPassword?(<i className="fa fa-eye-slash mr-3" onClick={(e)=>{setShowPassword(!showPassword)}}></i>):
-                                        (<i className="fa fa-eye mr-3" onClick={(e)=>{setShowPassword(!showPassword)}}></i>)}
-                                    </div>
+                                <div className="form-group">
+                                    <span>Confirm Password</span>
+                                    <input className="input" type={showPassword?"text":"password"} id="confirmPassword" onChange={onChange} required/>
+                                    {!showPassword?(<i className="fa fa-eye-slash mr-3" onClick={(e)=>{setShowPassword(!showPassword)}}></i>):
+                                    (<i className="fa fa-eye mr-3" onClick={(e)=>{setShowPassword(!showPassword)}}></i>)}
+                                </div>
                                 </div>
                                 <div className="col-md-7">
-                                    <div className="form-group">
-                                        <ReCAPTCHA
-                                        sitekey="6Ldxf4geAAAAACcrnyAo-9k8hlD-BTE6ZSrQAD5t"
-                                        onChange={onChangeCaptcha}
-                                        size="normal"
-                                        data-theme="dark"            
-                                        render="explicit"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col-md-12">
-                                    <button className="primary-button" >Sign Up</button>
+                                <div className="form-group">
+                                    <ReCAPTCHA
+                                    sitekey="6Ldxf4geAAAAACcrnyAo-9k8hlD-BTE6ZSrQAD5t"
+                                    onChange={onChangeCaptcha}
+                                    size="normal"
+                                    data-theme="dark"            
+                                    render="explicit"
+                                    />
                                 </div>
                             </div>
-                        </form>
-                        <div className="col-md-12">
-                        <p>Already have an account? <Link to="/login">Sign In</Link></p>
-                        </div>
+                                <div className="col-md-12">
+                                    <button type="submit" className="primary-button">Reset Password</button>
+                                </div>
+                                </form>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </>
 
-        </div>
     )
 }
 
-export default SignupComp
+export default ResetPassword

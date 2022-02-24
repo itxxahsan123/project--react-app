@@ -65,10 +65,10 @@ function SectionOne () {
   
     return (
    <>
-    <Carousel infiniteLoop={true} showIndicators={false} showThumbs={false} showStatus={false} autoPlay dynamicHeight={false} style={{"height":"360px"}}>
+    <Carousel infiniteLoop={true} showIndicators={false} showThumbs={false} showStatus={false} autoPlay dynamicHeight={false} >
         <div className="parent">
         <img src="./img/bannernew2.jpeg" alt="" className="image1"/>
-        <img src="./img/logo.png" alt="" className="image2"/>
+        <img src="./img/logo_1.svg" alt="" className="image2"/>
           </div>
          {/* <div >
               <img src="./img/banner7.jpeg" alt="" />

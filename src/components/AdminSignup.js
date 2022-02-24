@@ -3,21 +3,32 @@ import Axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom";
+import ReCAPTCHA from 'react-google-recaptcha';
+
 toast.configure()
 
 function AdminSignup() {
     const [user, setUserState] = useState({firstName:'',email:'',lastName:'',mobile:'',password:'',role:'admin',userPrivilegeId:1});
     const [loading,setloading] =useState(false);
+    const [isVerified,setIsVerified] =useState(false);
     function componentDidMount(e) {
         e.preventDefault();
         setloading(true);
-        Axios.post(`${process.env.React_App_Api_Url}/api/user/signup`,{user}).then(res=>{
-            toast.success('New admin account created successfully');
+        if(isVerified)
+        {
+            Axios.post(`${process.env.React_App_Api_Url}/api/user/signup`,{user}).then(res=>{
+                toast.success('New admin account created successfully');
+                setloading(false);
+            }).catch(err=>{
+                setloading(false);
+                toast.error('Something went wrong. Please try later.');
+            })
+        }
+        else
+        {
+            toast.error('Please verify that you are human.');
             setloading(false);
-        }).catch(err=>{
-            setloading(false);
-            toast.error('Something went wrong. Please try later.');
-        })
+        }
     }
     function onChange(e)
     {
@@ -44,6 +55,13 @@ function AdminSignup() {
         }
         setUserState(newUser);
 
+    }
+    function onChangeCaptcha(value)
+    {
+        if(value)
+        {
+            setIsVerified(true);
+        }
     }
     return (
         <div>
@@ -101,6 +119,17 @@ function AdminSignup() {
                                     <div className="form-group">
                                         <span>Confrim Password</span>
                                         <input className="input" type="password" name="confirmPassword" onChange={onChange}/>
+                                    </div>
+                                </div>
+                                <div className="col-md-7">
+                                    <div className="form-group">
+                                        <ReCAPTCHA
+                                        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                                        onChange={onChangeCaptcha}
+                                        size="normal"
+                                        data-theme="dark"            
+                                        render="explicit"
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-md-12">

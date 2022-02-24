@@ -89,5 +89,4 @@
 	});
 
 	setStickyPos();
-
 })(jQuery);

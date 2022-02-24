@@ -4,47 +4,55 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 toast.configure()
 
 function ContactUs() {
     const [user, setUserState] = useState({name:'',company_name:'',email:'',mobile:'',message:''});
     const [loading,setloading] =useState(false);
+    const [isVerified,setIsVerified] =useState(false);
     const history = useHistory();
     function componentDidMount(e) {
         e.preventDefault();
         setloading(true);
-        if(user.mobile.length>8)
+        if(isVerified)
         {
-            if(user.message.length>20)
+            if(user.mobile.length>8)
             {
-                    Axios.post(`${process.env.React_App_Api_Url}/api/contactus/create_contact_us`,{
-                        email:user.email,
-                        name:user.name,
-                        company_name:'null',
-                        reason:user.reason,
-                        message:user.message,
-                        mobile:user.mobile,
-                    }).then(res=>{
-                        toast.success('Your Contact Us has been successfully created. Our team member will contact you shortly.');
-                        setloading(false);
-                        history.replace("/");
-                        window.location.reload();
-                    }).catch(err=>{
-                        toast.error(`${err.response.data.message}`);
-                        setloading(false);
-                    })
-                
+                if(user.message.length>20)
+                {
+                        Axios.post(`${process.env.React_App_Api_Url}/api/contactus/create_contact_us`,{
+                            email:user.email,
+                            name:user.name,
+                            company_name:'null',
+                            reason:user.reason,
+                            message:user.message,
+                            mobile:user.mobile,
+                        }).then(res=>{
+                            toast.success('Your Contact Us has been successfully created. Our team member will contact you shortly.');
+                            setloading(false);
+                            history.replace("/");
+                            window.location.reload();
+                        }).catch(err=>{
+                            toast.error(`${err.response.data.message}`);
+                            setloading(false);
+                        })
+                    
+                }
+                else{
+                    toast.error('Message length should be greater than 20 words.');
+                    setloading(false);
+                }
             }
             else{
-                toast.error('Message length should be greater than 20 words.');
+                toast.error('Mobile number not valid.');
                 setloading(false);
             }
         }
         else{
-            toast.error('Mobile number not valid.');
+            toast.error('Please verify that you are human.');
             setloading(false);
         }
-
     }
     function onChange(e)
     {
@@ -75,6 +83,13 @@ function ContactUs() {
         }
         setUserState(newUser);
 
+    }
+    function onChangeCaptcha(value)
+    {
+        if(value)
+        {
+            setIsVerified(true);
+        }
     }
     return (
         <div>
@@ -138,13 +153,24 @@ function ContactUs() {
                                 <div className="col-md-12">
                                     <div className="form-group">
                                         <span>Message</span>
-										<div class="form-group">
+										<div className="form-group">
 											<textarea class="input" name="message" placeholder="Message" id="message" onChange={onChange} required></textarea>
 										</div>
                                     </div>
                                 </div>
                                 <div className="col-md-12">
-                                    <button className="primary-button" >Submit</button>
+                                <div className="form-group">
+                                <ReCAPTCHA
+                                        sitekey="6Ldxf4geAAAAACcrnyAo-9k8hlD-BTE6ZSrQAD5t"
+                                        onChange={onChangeCaptcha}
+                                        size="normal"
+                                        data-theme="dark"            
+                                        render="explicit"
+                                />
+                                </div>
+                                </div>
+                                <div className="col-md-12">
+                                    <button className="primary-button">Submit</button>
                                 </div>
                             </div>
                         </form>

@@ -4,6 +4,7 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 toast.configure()
 
@@ -13,34 +14,42 @@ function LoginComp (){
     const [loading,setloading] =useState(false);
     const [showProfile,setShowProfile] =useState(localStorage.getItem('blogUser')?true:false);
     const [userProfile, setUserProfile] = useState(showProfile?JSON.parse(localStorage.getItem('blogUser')):'');
+    const [isVerified,setIsVerified] =useState(false);
     const history = useHistory();
     const login = () =>
     {
         // ${process.env.React_App_Api_Url}
         // ${process.env.React_App_Api_Url}
         setloading(true);
-        Axios.post(`${process.env.React_App_Api_Url}/api/user/login`,{email:user.email,password:user.password}).then(res=>{
-            localStorage.setItem("blogUserToken",res.data.token);
-            localStorage.setItem("blogUser",JSON.stringify(res.data.user));
-            if(res.data.user.role==="admin")
-            {
-                history.replace("/verifyblogs");
-                window.location.reload();
+        if(isVerified)
+        {
+            Axios.post(`${process.env.React_App_Api_Url}/api/user/login`,{email:user.email,password:user.password}).then(res=>{
+                localStorage.setItem("blogUserToken",res.data.token);
+                localStorage.setItem("blogUser",JSON.stringify(res.data.user));
+                if(res.data.user.role==="admin")
+                {
+                    history.replace("/verifyblogs");
+                    window.location.reload();
+                    setloading(false);
+                }
+                else{
+                    history.replace("/");
+                    window.location.reload();
+                    setloading(false);
+                }
+                setShowProfile(true);
+                setUserProfile(res.data.user);
+                setUserState({email:'',password:''});
+            }).catch(err=>{
+                toast.error(`${err.response.data.message}`);
                 setloading(false);
-            }
-            else{
-                history.replace("/");
-                window.location.reload();
-                setloading(false);
-            }
-            setShowProfile(true);
-            setUserProfile(res.data.user);
-            setUserState({email:'',password:''});
-        }).catch(err=>{
-            toast.error(`${err.response.data.message}`);
+            })
+        }
+        else
+        {
+            toast.error('Please verify that you are human.');
             setloading(false);
-        })
-
+        }
     }
     const UpdateProfile = (e,id) =>
     {
@@ -93,6 +102,13 @@ function LoginComp (){
         newUserProfile[e.target.id] = e.target.value
         setUserProfile(newUserProfile);
         console.log(setUserProfile);
+    }
+    function onChangeCaptcha(value)
+    {
+        if(value)
+        {
+            setIsVerified(true);
+        }
     }
     return (
         <div>
@@ -156,6 +172,11 @@ function LoginComp (){
                                         <input className="input" type="number" name="email" id="mobile" value={userProfile.mobile} onChange={onUpdateUser}/>
                                     </div>
                                 </div>
+                                <div className="col-md-7">
+                                <div className="form-group">
+                                  <p>Want To  <Link to="/resetpassword" >RESET PASSWORD</Link></p>
+                                </div>
+                                </div>
                                 <div className="col-md-12">
                                     <button onClick={e=>{updateUser(e)}} className="primary-button">Update</button>
                                 </div>
@@ -214,12 +235,26 @@ function LoginComp (){
                 (<i className="fa fa-eye mr-3" onClick={(e)=>{setShowPassword(!showPassword)}}></i>)}
                                     </div>
                                 </div>
+                                <div className="col-md-7">
+                                    <div className="form-group">
+                                        <ReCAPTCHA
+                                        sitekey="6Ldxf4geAAAAACcrnyAo-9k8hlD-BTE6ZSrQAD5t"
+                                        onChange={onChangeCaptcha}
+                                        size="normal"
+                                        data-theme="dark"            
+                                        render="explicit"
+                                        />
+                                    </div>
+                                </div>
                                 <div className="col-md-12">
                                     <button type="submit" className="primary-button">Sign In</button>
                                 </div>
                                 </form>
                                 <div className="col-md-12">
                                 <p>Dont have an account? <Link to="/signup">Sign Up</Link></p>
+                                </div>
+                                <div className="col-md-12">
+                                <p><Link to="/forgetpassword">Forget Password</Link></p>
                                 </div>
                             </div>
                     </div>

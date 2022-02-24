@@ -155,7 +155,32 @@ function Blogdetails() {
                         {user ? posts.createdby==user.id ? 
                             <Link to="/myblog" className="share-linkedin" onClick={deleteBlog}><i className="fa fa-trash"></i></Link>
                         :'':''}
+                        {user ? posts.createdby==user.id ? 
+                            <Link to={`/editblog/${posts.id}`} className="share-linkedin" ><i className="fa fa-edit"></i></Link>
+                        :'':''}
                         </div>
+                        <div className="section-row">
+                        <div className="post-author">
+                            <div className="media">
+                                <div className="media-left">
+                                    <img className="media-object" src="./img/author.png" alt="" />
+                                </div>
+                                <div className="media-body">
+                                    <div className="media-heading">
+                                        <h3>{posts!==undefined && posts!==[]?posts.User!==undefined && posts.User!==[] && posts.User!== null? 
+                                          posts.User.firstName + ' '+ posts.User.lastName:'':''}</h3>
+                                    </div>
+                                    {/*<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <ul className="author-social">
+                                        <li><a href="#"><i className="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i className="fa fa-google-plus"></i></a></li>
+                                        <li><a href="#"><i className="fa fa-instagram"></i></a></li>
+                                    </ul>--!>*/}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
 
                 </div>

@@ -37,6 +37,7 @@ RESPONSIVE
      margin: 0;
      padding: 0;
      overflow-x: hidden;
+     z-index:0;
 }
  h1, h2, h3, h4, h5, h6 {
      font-family: 'grammatika Sans', sans-serif;
@@ -400,7 +401,6 @@ RESPONSIVE
      background-color:#282828;
      max-width: 360px;
      width: 90%;
-     padding: 80px 20px;
      overflow-y: scroll;
      z-index: 99;
      -webkit-transform: translateX(100%);
@@ -419,6 +419,7 @@ RESPONSIVE
      font-weight:700;
      font-size:23px;
      color:#888;
+     padding:10px 20px 10px 20px;
 }
 .navasidecolor{
     color:#888;
@@ -433,7 +434,7 @@ RESPONSIVE
  .nav-aside-social li {
      display: inline-block;
 }
- .nav-aside-social li > a {
+ .nav-aside-social li > Link {
      display: block;
      width: 30px;
      height: 30px;
@@ -1096,8 +1097,9 @@ RESPONSIVE
 }
 
 .carousel .slide img {
-    max-height: 500px;  /* change this to whatever you want */
+    max-height: 400px;  /* change this to whatever you want */
     width: auto;
+    
 }
 .search-form input[type="text"], select {
   border-radius: 5px;
@@ -1416,4 +1418,15 @@ input[type=number] {
     top: 30px;
     left: 30px;
     border: 1px green solid;
+    height:75%;
   }
+  .fixed {
+    position: fixed;
+    top:0; left:0;
+    width: 100%; }
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+      }

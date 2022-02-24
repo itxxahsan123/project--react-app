@@ -7,6 +7,8 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useHistory } from 'react-router-dom';
 import imageCompression from 'browser-image-compression';
+import ReCAPTCHA from 'react-google-recaptcha';
+
 toast.configure()
 function UploadBlog() {
   const [dataUri, setDataUri] = useState('')
@@ -15,6 +17,7 @@ function UploadBlog() {
   const [url, setUrl] = useState('')
   const[user,setUser] = useState(JSON.parse(localStorage.getItem('blogUser')))
   const[blog,setBlog] = useState({desc:'',title:'',tag:''});
+  const [isVerified,setIsVerified] =useState(false);
   const history = useHistory();
   const API_URL = `${process.env.React_App_Api_Url}/api/aws/file?email=${user.email}`;
  
@@ -93,31 +96,39 @@ function UploadBlog() {
     let formData = new FormData();
      formData.append('file', dataUri);
      setloading(true)
-     if(dataUri !== '' && text !== '' && blog.title !== '' && blog.tag !== '')
+     if(isVerified)
      {
-        Axios.post(`${process.env.React_App_Api_Url}/api/blog/createblog`,{
-          image:url,
-          title:blog.title,
-          text:text,
-          userid:user.id,
-          verified:false,
-          tag:blog.tag.toLowerCase()
-        }).then(res=>{
-          toast.success('Blog uploaded successfully. Our Admin will verify it shortly.');
-          setBlog({desc:'',title:'',tag:''});
-          setDataUri('');
+        if(dataUri !== '' && text !== '' && blog.title !== '' && blog.tag !== '')
+        {
+            Axios.post(`${process.env.React_App_Api_Url}/api/blog/createblog`,{
+              image:url,
+              title:blog.title,
+              text:text,
+              userid:user.id,
+              verified:false,
+              tag:blog.tag.toLowerCase()
+            }).then(res=>{
+              toast.success('Blog uploaded successfully. Our Admin will verify it shortly.');
+              setBlog({desc:'',title:'',tag:''});
+              setDataUri('');
+              setloading(false);
+              history.replace("/myblogs");
+            }).catch(err=>{
+                console.log(err);
+                setloading(false)
+                toast.error('Something went wrong. Please try later.');
+            })
+        }
+        else{
+              setloading(false)
+              toast.error('All feilds are required. Fill all feilds to publish blog.');
+        }
+      }
+      else
+      {
+          toast.error('Please verify that you are human.');
           setloading(false);
-          history.replace("/myblogs");
-        }).catch(err=>{
-            console.log(err);
-            setloading(false)
-            toast.error('Something went wrong. Please try later.');
-        })
-     }
-     else{
-          setloading(false)
-          toast.error('All feilds are required. Fill all feilds to publish blog.');
-     }
+      }
 
   }
   const onImageChange = (file) => {
@@ -141,6 +152,13 @@ function UploadBlog() {
       toast.error('Please select only png/jpeg format of image.');
       setloading(false);
     }       
+  }
+  function onChangeCaptcha(value)
+  {
+      if(value)
+      {
+          setIsVerified(true);
+      }
   }
     return (
       < >
@@ -204,6 +222,15 @@ function UploadBlog() {
                 // config={{ removePlugins: ['MediaEmbed','EasyImage','ImageUpload']}} 
                 >
               </CKEditor>
+            </div>
+            <div className="writeFormGroup" style={{"marginTop":"3%"}}>
+              <ReCAPTCHA
+              sitekey="6Ldxf4geAAAAACcrnyAo-9k8hlD-BTE6ZSrQAD5t"
+              onChange={onChangeCaptcha}
+              size="normal"
+              data-theme="dark"            
+              render="explicit"
+              />
             </div>
             <button className="writeSubmit" type="submit">
               Publish

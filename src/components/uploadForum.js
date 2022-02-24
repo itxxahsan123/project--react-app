@@ -4,6 +4,8 @@ import Axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
+
 toast.configure()
 
 function UploadForum() {
@@ -12,6 +14,7 @@ function UploadForum() {
     const[user,setUser] = useState(JSON.parse(localStorage.getItem('blogUser')))
     const[blog,setBlog] = useState({desc:'',title:'',tag:''});
     const [loading,setloading] =useState(false);
+    const [isVerified,setIsVerified] =useState(false);
     const history = useHistory();
 
     const fileToDataUri = (file) => new Promise((resolve, reject) => {
@@ -56,31 +59,39 @@ function UploadForum() {
       let formData = new FormData();
       setloading(true);
       formData.append('file', dataUri);
-       if(dataUri !== '' && blog.desc !== '' && blog.title !== '' && blog.tag !== '')
-       {
-            Axios.post(`${process.env.React_App_Api_Url}/api/forum/createforums`,{
-            image:url,
-            title:blog.title,
-            text:blog.desc,
-            userid:user.id,
-            verified:false,
-            tag:blog.tag.toLowerCase()
-          }).then(res=>{
-            toast.success('Forum uploaded successfully. Our Admin will verify it shortly.');
-            setBlog({desc:'',title:'',tag:''});
-            setDataUri('');
-            setloading(false);
-            history.replace("/myforums");
-          }).catch(err=>{
-              console.log(err);
-              toast.error('Something went wrong. Please try later.');
+      if(isVerified)
+      {
+          if(dataUri !== '' && blog.desc !== '' && blog.title !== '' && blog.tag !== '')
+          {
+                Axios.post(`${process.env.React_App_Api_Url}/api/forum/createforums`,{
+                image:url,
+                title:blog.title,
+                text:blog.desc,
+                userid:user.id,
+                verified:false,
+                tag:blog.tag.toLowerCase()
+              }).then(res=>{
+                toast.success('Forum uploaded successfully. Our Admin will verify it shortly.');
+                setBlog({desc:'',title:'',tag:''});
+                setDataUri('');
+                setloading(false);
+                history.replace("/myforums");
+              }).catch(err=>{
+                  console.log(err);
+                  toast.error('Something went wrong. Please try later.');
+                  setloading(false);
+                })
+          }
+          else{
+              toast.error('All feilds are required. Fill all feilds to publish blog.');
               setloading(false);
-            })
-       }
-       else{
-          toast.error('All feilds are required. Fill all feilds to publish blog.');
+            }
+      }
+      else
+      {
+          toast.error('Please verify that you are human.');
           setloading(false);
-        }
+      }
     }
     const onImageChange = (file) => {
       setloading(true);
@@ -105,7 +116,13 @@ function UploadForum() {
       }       
       
     }
-  
+    function onChangeCaptcha(value)
+    {
+        if(value)
+        {
+            setIsVerified(true);
+        }
+    }  
       return (
           <div className="write">
           {
@@ -162,6 +179,15 @@ function UploadForum() {
                 onChange={onChange}
                 style={{border:"1px solid peru","borderRadius":"10px"}}
 
+              />
+            </div>
+            <div className="writeFormGroup" style={{"marginTop":"3%"}}>
+              <ReCAPTCHA
+              sitekey="6Ldxf4geAAAAACcrnyAo-9k8hlD-BTE6ZSrQAD5t"
+              onChange={onChangeCaptcha}
+              size="normal"
+              data-theme="dark"            
+              render="explicit"
               />
             </div>
             <button className="writeSubmit" type="submit">
