@@ -182,6 +182,7 @@ function Admincontactus() {
             <div className="container-fluid" style={{"padding": "0 50px","margin-top": "30px"}}>
                 <div className="row" style={{"display": "block"}}>
                     <div className="col-md-12">
+                    <form onSubmit={e=>{searchfunc(e)}}>
                             <div className="col-md-3">
                                 <input autocomplete="off" type="text" placeholder="Search by Name" style={{"border":"1px solid black","borderRadius":"8px","marginTop":"5%"}} id="name" onChange={onChange}/> 
                             </div>
@@ -192,9 +193,10 @@ function Admincontactus() {
                                 <input autocomplete="off" type="text" placeholder="Search by Email" style={{"border":"1px solid black","borderRadius":"8px","marginTop":"5%"}} id="email" onChange={onChange}/> 
                             </div>
                             <div className="col-md-3">
-                                <button className="button2" onClick={e=>{searchfunc(e)}} style={{"marginTop":"5%"}}>Search</button>
+                                <button className="button2" type="submit" style={{"marginTop":"5%"}}>Search</button>
                                 <button className="button2" onClick={e=>{clearSearch(e)}} style={{"marginLeft":"3%","marginTop":"5%"}}>Clear</button>
                             </div>
+                    </form>
                     </div>
                 </div>
                 </div>

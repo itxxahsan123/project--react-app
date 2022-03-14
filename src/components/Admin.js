@@ -158,6 +158,7 @@ function Admin() {
             <div className="container-fluid" style={{"padding": "0 50px","margin-top": "30px"}}>
             <div className="row" style={{"display": "block"}}>
                 <div className="col-md-12">
+                     <form onSubmit={e=>{searchfunc(e)}}>
                         <div className="col-md-4">
                             <input autocomplete="off" type="text" placeholder="Search by Mobile" style={{"border":"1px solid black","borderRadius":"8px"}} id="tag" onChange={onChange}/> 
                         </div>
@@ -168,9 +169,10 @@ function Admin() {
                             <input autocomplete="off" type="text" placeholder="Search by Email" style={{"border":"1px solid black","borderRadius":"8px"}} id="email" onChange={onChange}/> 
                         </div>
                         <div className="col-md-4">
-                            <button className="button2" onClick={e=>{searchfunc(e)}} >Search</button>
+                            <button className="button2" type="submit" >Search</button>
                             <button className="button2" onClick={e=>{clearSearch(e)}} style={{"marginLeft":"3%"}}>Clear</button>
                         </div>
+                    </form>
                 </div>
             </div>
             </div>

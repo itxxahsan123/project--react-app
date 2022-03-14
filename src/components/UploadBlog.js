@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import './uploadblogcss/card.css';
 import Axios from 'axios';
 import {toast} from 'react-toastify';
@@ -19,8 +19,7 @@ function UploadBlog() {
   const[blog,setBlog] = useState({desc:'',title:'',tag:''});
   const [isVerified,setIsVerified] =useState(false);
   const history = useHistory();
-  const API_URL = `${process.env.React_App_Api_Url}/api/aws/file?email=${user.email}`;
- 
+  const[API_URL,setAPI_URL] = useState('');
   function uploadAdapter(loader) {
     return {
       upload: async () => {
@@ -160,6 +159,22 @@ function UploadBlog() {
           setIsVerified(true);
       }
   }
+  function componentDidMount()
+  {
+    if(!user)
+    {
+      toast.error('Login to post Blog.');
+      setloading(false);
+      history.replace("/login");
+    }
+    else{
+      setAPI_URL(`${process.env.React_App_Api_Url}/api/aws/file?email=${user.email}`);
+    }
+  }
+  useEffect(() => {
+    setloading(true);
+    componentDidMount();
+  }, [])
     return (
       < >
               <div className="write">

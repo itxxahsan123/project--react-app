@@ -3,7 +3,7 @@ import React from 'react'
 function VerificationComp() {
     return (
         <div className="center">
-            <img src="./img/thankyouemojee.jpg"/>
+            <img src="./img/thankyouemojee.jpeg"/>
             <h3 >Thank you for registering, please check your inbox to verify your email address.</h3>
         </div>
     )

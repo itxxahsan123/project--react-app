@@ -123,13 +123,13 @@ function AdminSignup() {
                                 </div>
                                 <div className="col-md-7">
                                     <div className="form-group">
-                                        <ReCAPTCHA
-                                        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                                        onChange={onChangeCaptcha}
-                                        size="normal"
-                                        data-theme="dark"            
-                                        render="explicit"
-                                        />
+                                    <ReCAPTCHA
+                                    sitekey="6Ldxf4geAAAAACcrnyAo-9k8hlD-BTE6ZSrQAD5t"
+                                    onChange={onChangeCaptcha}
+                                    size="normal"
+                                    data-theme="dark"            
+                                    render="explicit"
+                                    />
                                     </div>
                                 </div>
                                 <div className="col-md-12">

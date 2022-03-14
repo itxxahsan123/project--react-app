@@ -68,7 +68,7 @@ function SectionOne () {
     <Carousel infiniteLoop={true} showIndicators={false} showThumbs={false} showStatus={false} autoPlay dynamicHeight={false} >
         <div className="parent">
         <img src="./img/bannernew2.jpeg" alt="" className="image1"/>
-        <img src="./img/logo_1.svg" alt="" className="image2"/>
+        <img src="./img/logo_1.png" alt="" className="image2" style={{"width":"30%"}}/>
           </div>
          {/* <div >
               <img src="./img/banner7.jpeg" alt="" />
@@ -91,6 +91,7 @@ function SectionOne () {
           <div className="post-meta">
               <Link className="post-category cat-3" to={`/post/${recentBlogs[0].id}`}>{recentBlogs[0].tag}</Link>
               <span className="post-date">{splitDate(recentBlogs[0].updatedAt)}</span>
+              <span className="post-date" style={{textTransform:"uppercase"}}>&nbsp;&nbsp;{recentBlogs[0].User?recentBlogs[0].User.firstName:''}</span>
           </div>
           <h3 className="post-title"><Link to={`/post/${recentBlogs[0].id}`}>{recentBlogs[0].title}</Link></h3>
           </div>
@@ -107,7 +108,8 @@ function SectionOne () {
            <div className="post-meta">
                <Link className="post-category cat-3" to={`/post/${recentBlogs[1].id}`}>{recentBlogs[1].tag}</Link>
                <span className="post-date">{splitDate(recentBlogs[1].updatedAt)}</span>
-           </div>
+               <span className="post-date" style={{textTransform:"uppercase"}}>&nbsp;&nbsp;{recentBlogs[1].User?recentBlogs[1].User.firstName:''}</span>
+               </div>
            <h3 className="post-title"><Link to={`/post/${recentBlogs[1].id}`}>{recentBlogs[1].title}</Link></h3>
            </div>
          </div>:'':''
@@ -138,7 +140,8 @@ function SectionOne () {
                       (index)%2===0 ?<Link to={`/post/${recentblog.id}`} className="post-category cat-4">{recentblog.tag}</Link>:''
                     }
                       <span className="post-date">{splitDate(recentblog.updatedAt)}</span>
-                    </div>
+                      <span className="post-date" style={{textTransform:"uppercase"}}>&nbsp;&nbsp;{recentblog.User?recentblog.User.firstName:''}</span>
+                      </div>
                     <h3 className="post-title" ><Link to={`/post/${recentblog.id}`}>{recentblog.title}</Link></h3>
                 <p >{richtextToplaintext(recentblog.text).substring(0, 200)}.....<Link to={`/post/${recentblog.id}`}>Read More</Link></p>
           </div>
@@ -164,7 +167,8 @@ function SectionOne () {
                    <div className="post-meta">
                      <Link className="post-category cat-3" to={`/post/${recentBlogs[8].id}`}>{recentBlogs[8].tag}</Link>
                      <span className="post-date">{splitDate(recentBlogs[6].updatedAt)}</span>
-                   </div>
+                     <span className="post-date" style={{textTransform:"uppercase"}}>&nbsp;&nbsp;{recentBlogs[8].User?recentBlogs[8].User.firstName:''}</span>
+                     </div>
                    <h3 className="post-title"><Link to={`/post/${recentBlogs[8].id}`}>{recentBlogs[8].title}</Link></h3>
                  </div>
                </div>
@@ -190,7 +194,8 @@ function SectionOne () {
                               (index)%2===0 ?<Link to={`/post/${recentblog.id}`} className="post-category cat-4">{recentblog.tag}</Link>:''
                             }
                               <span className="post-date">{splitDate(recentblog.updatedAt)}</span>
-                            </div>
+                              <span className="post-date" style={{textTransform:"uppercase"}}>&nbsp;&nbsp;{recentblog.User?recentblog.User.firstName:''}</span>
+                              </div>
                             <h3 className="post-title"><Link to={`/post/${recentblog.id}`}>{recentblog.title}</Link></h3>
                 <p >{richtextToplaintext(recentblog.text).substring(0, 200)}.....<Link to={`/post/${recentblog.id}`}>Read More</Link></p>
                 </div>

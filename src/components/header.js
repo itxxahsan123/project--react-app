@@ -4,7 +4,7 @@ import Axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
-import CarouselC from "../components/carousel";
+import Carousel from "../components/carousel";
 import $ from 'jquery';
 toast.configure()
 function Header(props) {
@@ -80,7 +80,28 @@ function Header(props) {
     getCategories();
   }, [])
     return (
-     <header id="header" className="sticky" style={{"zIndex":"1000"}}>     
+     <header id="header" className="sticky" style={{"zIndex":"1000"}}> 
+     <div id="nav" style={{"opacity":"0.5"}}>
+          <div id="nav-fixed">
+            <div className="container" style={{"marginLeft":"-2%","width":"100%"}}>
+                <ul className="nav-menu nav navbar-nav" >
+                     { tags.length!=0 ?
+                      tags.map( (tag,index)=>{
+                        return (
+                          <>
+                              {
+                                index<11?
+                                <li ><Link to={`/allblog/${tag.tag}`} style={{textTransform:"uppercase",fontSize:"12px"}}>{tag.tag}</Link></li>
+                                :''
+                              }
+                          </>
+                        )
+                      }):''
+                    }                   
+                </ul>
+            </div>
+          </div>
+      </div>     
      <div id="nav" >
           <div id="nav-fixed">
             <div className="container" style={{"marginLeft":"0%","width":"100%"}}>
@@ -89,7 +110,7 @@ function Header(props) {
               </div>
    
               <ul className="nav-menu nav navbar-nav">
-                  <li ><Link to="/">Home</Link></li>
+                  <li ><Link to="/">HOME</Link></li>
                 { token ?
                   <>
                     {
@@ -99,16 +120,19 @@ function Header(props) {
                         </>
                       :
                       <> 
-                      <li ><Link to="/allblog">Blogs</Link></li>
-                      <li ><Link to="/allforum">Forums</Link></li>
-                        <li ><Link to="/login" onClick={logOut}>Log out</Link></li>
+                      <li ><Link to="/allblog">BLOGS</Link></li>
+                      <li ><Link to="/allforum">FORUMS</Link></li>
+                      <li><Link to="/uploadblog" >SUBMIT BLOG</Link></li>
+                      <li ><Link to="/login" onClick={logOut}>LOG OUT</Link></li>
                       </>
                     }
 
                   </>
                   : <> 
-                  <li ><Link to="/allforum">Forums</Link></li>
-                  <li ><Link to="/allblog">Blogs</Link></li>
+                  <li ><Link to="/allforum">FORUMS</Link></li>
+                  <li ><Link to="/allblog">BLOGS</Link></li>
+                  <li><Link to="/login" >LOGIN</Link></li>
+                  <li><Link to="/uploadblog" >SUBMIT BLOG</Link></li>
                   </>
                 }
               </ul>
@@ -129,8 +153,8 @@ function Header(props) {
                   <a href="https://twitter.com/JypraGroup" target="_blank" className="share-twitter"><i className="fa fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
                   <a href="https://www.linkedin.com/company/jypragroup" target="_blank" className="share-linkedin"><i className="fa fa-linkedin"></i></a>&nbsp;&nbsp;&nbsp;
                   <a href="mailto:info@jypragroup.com.au" target="_blank"><i className="fa fa-envelope"></i></a>&nbsp;&nbsp;&nbsp;
-                  <button className="aside-btn"><i className="faviconcolor fa fa-bars" ></i></button>
                   <button className="search-btn"><i className=" faviconcolor fa fa-search" onClick={()=>{setSearch(true)}}></i></button>
+                  <button className="aside-btn"><i className="faviconcolor fa fa-bars" ></i></button>
                   </>
                 }
               </div>
@@ -172,15 +196,15 @@ function Header(props) {
                   {
                     token.role==='admin'?
                     <>
-                    <li className="nav-aside-close"><Link to="/allblog" className="close">All BLOGS</Link></li>
-                    <li className="nav-aside-close"><Link to="/allforum" className="close">All FORUMS</Link></li>
-                    <li className="nav-aside-close"><Link to="/adminsignup" className="close">ADMIN SIGNUP</Link></li>
-                    <li className="nav-aside-close"><Link to="/admin" className="close">USERS</Link></li>
-                    <li className="nav-aside-close"><Link to="/verifyblogs" className="close">BLOGS</Link></li>
-                    <li className="nav-aside-close"><Link to="/verifyforums" className="close">FORUMS</Link></li>
-                    <li className="nav-aside-close"><Link to="/admincontactus" className="close">CONTACT US</Link></li>
-                    <li className="nav-aside-close"><Link to='/about' className="close">ABOUT US</Link></li>
-                    <li className="nav-aside-close"><Link to="/login" onClick={logOut} className="close">LOG OUT</Link></li>
+                    <li className="nav-aside-close"><Link to="/allblog" >All BLOGS</Link></li>
+                    <li className="nav-aside-close"><Link to="/allforum" >All FORUMS</Link></li>
+                    <li className="nav-aside-close"><Link to="/adminsignup" >ADMIN SIGNUP</Link></li>
+                    <li className="nav-aside-close"><Link to="/admin" >USERS</Link></li>
+                    <li className="nav-aside-close"><Link to="/verifyblogs" >BLOGS</Link></li>
+                    <li className="nav-aside-close"><Link to="/verifyforums" >FORUMS</Link></li>
+                    <li className="nav-aside-close"><Link to="/admincontactus" >CONTACT US</Link></li>
+                    <li className="nav-aside-close"><Link to='/about' >ABOUT US</Link></li>
+                    <li className="nav-aside-close"><Link to="/login" onClick={logOut} >LOG OUT</Link></li>
                     </>
                     :<>
                     <li className="nav-aside-close"><Link to="/login" >EDIT PROFILE</Link></li>

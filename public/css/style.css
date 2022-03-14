@@ -167,6 +167,7 @@ RESPONSIVE
  #nav {
      height: 70px;
 }
+
  #nav:after {
      content: "";
      position: fixed;
@@ -280,6 +281,16 @@ RESPONSIVE
      transition: 0.2s color;
      color:#fff;
      border: none;
+}
+.nav-menu1 li a {
+    position: relative;
+    text-transform: capitalize;
+    /* -webkit-box-shadow: -1px 0px 0px 0px #eceef2 inset;
+    box-shadow: -1px 0px 0px 0px #eceef2 inset; */
+    -webkit-transition: 0.2s color;
+    transition: 0.2s color;
+    color:#fff;
+    border: none;
 }
     .faviconcolor{
         color:#fff;
@@ -904,21 +915,22 @@ RESPONSIVE
 	FOOTER
 ===========================================================*/
  #footer {
-     margin-top: 5%;
+     margin-top: 15%;
+     padding-top: 8rem;
     text-align:center;
     background-color: rgba(0,0,0,.75);
+    font-family: Barlow,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
 }
  #footer .container {
-     padding-top: 20px;
-     border-top: 1px solid #F4f4f9;
+     /* border-top: 1px solid #000; */
 }
  .footer-widget {
     
 }
  .footer-widget .footer-title {
-    color: rgba(255,255,255,.8);
+    color:#747474;
+    font-weight: 700;
      text-transform: capitalize;
-     font-size: 18px;
 }
  .footer-widget a {
      color: rgba(255,255,255,.8);
@@ -936,13 +948,37 @@ RESPONSIVE
      display: inline-block;
      margin-right: 15px;
 }
- .footer-links li + li {
+ .footer-links li {
      margin-top: 5px;
+     color:#e6e6eb;
+     font-weight:700;
+     font-size:16px;
 }
  .footer-copyright {
+     /* display: flex;
+     flex-direction: column;
+     flex-wrap: wrap;
+     justify-content: space-around;
+     padding: 1rem 1rem 1rem 1rem; */
      margin-top: 20px;
      color: rgba(255,255,255,.8);
-     font-size: 13px;
+     font-size: 12px;
+     /* background-color: #000;
+     width:100%;
+     text-align: center;
+     font-size: 13px; */
+}
+.footer-copyright1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 1rem 1rem 1rem 1rem;
+    margin-top: 20px;
+    background-color: #0e0e0d;
+    width:100%;
+    text-align: center;
+    color: rgba(255,255,255,.8);
+    font-size: 16px;
 }
  .footer-newsletter form {
      position: relative;
@@ -1416,9 +1452,10 @@ input[type=number] {
   .image2 {
     position: absolute;
     top: 30px;
-    left: 30px;
+    left: 35%;
     border: 1px green solid;
     height:75%;
+
   }
   .fixed {
     position: fixed;

@@ -24,9 +24,11 @@ import ForgetPassword from "./components/ForgetPassword";
 import ResetPassword from "./components/ResetPassword";
 import Editblog from "./components/Editblog";
 import VerificationComp from "./components/VerificationComp";
+import VerifyUser from "./components/VerifyUser";
 function App() {
   return (
     <>
+    {/* http://3.223.54.220:3001*/}
     <Router>     
         <Switch>
       
@@ -126,6 +128,10 @@ function App() {
         <Route exact path="/verificationpage">
           <Header ></Header>
           <VerificationComp></VerificationComp>
+        </Route>
+        <Route exact path="/verifyuser/:id/:otp">
+          <Header ></Header>
+          <VerifyUser></VerifyUser>
         </Route>
           <Route exact path="/" >
           <Home></Home>

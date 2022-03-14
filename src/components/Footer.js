@@ -44,7 +44,7 @@ function Footer() {
 
                 <div className="footer-copyright">
                   <span>&copy;
-   Copyright &copy;2021.<script>document.write(new Date().getFullYear());</script> All rights reserved. </span>
+   Copyright 2022 Blogging.<script>document.write(new Date().getFullYear());</script> All rights reserved. </span>
                 </div>
               </div>
             </div>
@@ -53,9 +53,9 @@ function Footer() {
               <div className="row">
                 <div className="col-md-6">
                   <div className="footer-widget">
-                    <h3 className="footer-title" >Quick Links</h3>
+                    <h3 className="footer-title" >QUICK LINKS</h3>
                     <ul className="footer-links" >
-                      <li><Link to="/about">About Us</Link></li>
+                      <li style={{fontSize:"16px"}}><Link to="/about">About Us</Link></li>
                       <li><Link to="/signup">Join Us</Link></li>
                       <li><Link to="/login">Login</Link></li>
                       <li ><Link to="/allblog">Blogs</Link></li>
@@ -65,7 +65,7 @@ function Footer() {
                 </div>
                 <div className="col-md-6">
                   <div className="footer-widget">
-                    <h4 className="footer-title">Contact Us</h4>
+                    <h3 className="footer-title">CONTACT US</h3>
                     <ul className="footer-links">
                            <li><Link to="/contactus">Send Us A Message</Link></li>
                     </ul>
@@ -76,7 +76,7 @@ function Footer() {
    
             <div className="col-md-3">
               <div className="footer-widget">
-                <h3 className="footer-title">Search Any Blog</h3>
+                <h3 className="footer-title">SEARCH ANY BLOG</h3>
                 <div className="footer-newsletter">
                 <form onSubmit={(e)=>{searchfunc(e)}} >
                     <input className="input" onChange={onChange} type="search" name="search" placeholder="Enter Your Search ..." id="search" autoComplete="off"/>

@@ -30,7 +30,7 @@ function SignupComp(e) {
                         if(user.password  === user.confirmpassword)
                         {
                             Axios.post(`${process.env.React_App_Api_Url}/api/user/signup`,{user}).then(res=>{
-                                toast.success('Your account has been successfully created. Our admin will shortly approve your account.');
+                                toast.success('An email has been sent to your account. Please verify it for login.');
                                 setloading(false);
                                 history.replace("/verificationpage");
                             }).catch(err=>{
@@ -241,7 +241,8 @@ function SignupComp(e) {
                                 <div className="col-md-7">
                                     <div className="form-group">
                                         <span>Email</span>
-                                        <input className="input" autocomplete="off" type="email" name="email" id="email" onChange={onChange} required/>
+                                        <input className="input" autocomplete="off" type="email" name="email" id="email" onChange={onChange} required 
+                                        pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"/>
                                     </div>
                                 </div>
                                 <div className="col-md-7">

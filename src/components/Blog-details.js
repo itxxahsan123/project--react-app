@@ -169,6 +169,7 @@ function Blogdetails() {
                                     <div className="media-heading">
                                         <h3>{posts!==undefined && posts!==[]?posts.User!==undefined && posts.User!==[] && posts.User!== null? 
                                           posts.User.firstName + ' '+ posts.User.lastName:'':''}</h3>
+                                          <p>{posts!==undefined && posts!==[]?posts.User!==undefined && posts.User!==[] && posts.User!== null?splitDate(posts.updatedAt):'':''}</p>
                                     </div>
                                     {/*<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                     <ul className="author-social">

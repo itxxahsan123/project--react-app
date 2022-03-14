@@ -62,6 +62,7 @@ function Myblogs() {
                                                       (index)%2===0 ?<Link to={`/post/${recentblog.id}`} className="post-category cat-4">{recentblog.tag}</Link>:''
                                                     }
                                                     <span className="post-date">{splitDate(recentblog.updatedAt)}</span>
+                                                    <span className="post-date" style={{textTransform:"uppercase"}}>&nbsp;&nbsp;{recentblog.User.firstName}</span>
                                                     </div>
                                                     <div className="post-meta">
                                                         {recentblog.verified===true?
