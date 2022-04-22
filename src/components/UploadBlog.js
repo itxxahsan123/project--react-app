@@ -214,14 +214,23 @@ function UploadBlog() {
             
             </div>
             <div className="writeFormGroup" style={{"marginTop":"3%"}}>
-                  <input
+                  <select  onChange={onChange} id="tag" 
+                  style={{border:"1px solid peru","borderRadius":"10px","width":"76%","textAlign":"center"}}
+                  >
+                    <option disabled selected>Tag *</option>
+                    <option value="Technology">Tehcnology</option>
+                    <option value="Penetration testing">Penetration Testing</option>
+                    <option value="CTF" >CTF</option>
+                    <option value="Resources">Resources</option>
+                    <option value="Passing OSCP">Passing OSCP</option>
+                  </select>
+                  {/*<input
                   className="writeInput"
                   placeholder="Tag *"
                   type="text"
                   id="tag"
-                  onChange={onChange}
                   style={{border:"1px solid peru","borderRadius":"10px"}}
-                  />
+                  />*/}
             </div>
             <div className="writeFormGroup" style={{"marginTop":"3%"}}>
                 <CKEditor
@@ -247,11 +256,14 @@ function UploadBlog() {
               render="explicit"
               />
             </div>
-            <button className="writeSubmit" type="submit">
-              Publish
-            </button>
+            <div className="writeFormGroup" style={{"marginTop":"3%"}}>
+            <label className="writeFile">
+            &nbsp;&nbsp;Publish&nbsp;&nbsp;<input type="submit" hidden/>
+            </label>
+            </div>
           </form>
           </div>
+
       </>
     )
 }

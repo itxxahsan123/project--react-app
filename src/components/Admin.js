@@ -10,6 +10,17 @@ function Admin() {
     const [tempBlog, settempBlog] = useState([]);
     const [loading,setloading] =useState(false);
     const [asc,setasc] =useState(true);
+    const[user,setUser] = useState(JSON.parse(localStorage.getItem('blogUser')))
+    const history = useHistory();
+
+    function componentDidMount()
+    {
+      if(!user)
+      {
+        history.replace("/login");
+      }
+    }
+  
     function getUsers()
     {
         setloading(true);
@@ -150,6 +161,7 @@ function Admin() {
     useEffect(()=> {
         setloading(true);
         getUsers();
+        componentDidMount();
       },[]);
     return (
         <div className="section">

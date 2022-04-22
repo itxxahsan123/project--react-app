@@ -41,8 +41,15 @@ function LoginComp (){
                 setUserProfile(res.data.user);
                 setUserState({email:'',password:''});
             }).catch(err=>{
-                toast.error(`${err.response.data.message}`);
-                setloading(false);
+                if(err.response.data.message == 'Auth failed,email not found' || err.response.data.message == 'Auth failed,password mismatched.' )
+                {
+                    toast.error('Username or password incorrect.');
+                    setloading(false);    
+                }
+                else{
+                    toast.error(`${err.response.data.message}`);
+                    setloading(false);
+                }
             })
         }
         else
@@ -133,16 +140,11 @@ function LoginComp (){
             <div className="section">
         <div className="container">
             <div className="row">
-                <div className="col-md-6">
-                    <div className="section-row">
-                        <h3>User Profile</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <ul className="list-style">
-                            <li><p><strong>Email:</strong> <a href="#">Webmag@blog.com</a></p></li>
-                            <li><p><strong>Phone:</strong> 213-520-7376</p></li>
-                            <li><p><strong>Address:</strong> 3770 Oliver Street</p></li>
-                        </ul>
-                    </div>
+            <div className="col-md-6">
+            <div className="section-row" style={{"marginTop":"0%"}}>
+                <h3 >Login</h3>
+                <img src="./img/about-1.jpg" style={{"width":"100%"}}/>
+                </div>
                 </div>
                 <div className="col-md-5 col-md-offset-1">
                     <div className="section-row">
@@ -174,7 +176,7 @@ function LoginComp (){
                                 </div>
                                 <div className="col-md-7">
                                 <div className="form-group">
-                                  <p>Want To  <Link to="/resetpassword" >RESET PASSWORD</Link></p>
+                                  <Link to="/resetpassword" style={{"fontWeight":"normal"}}><p>Want To  Reset Password</p></Link>
                                 </div>
                                 </div>
                                 <div className="col-md-12">
@@ -206,15 +208,10 @@ function LoginComp (){
         <div className="container">
             <div className="row">
                 <div className="col-md-6">
-                    <div className="section-row" style={{"marginTop":"10%"}}>
+                    <div className="section-row" style={{"marginTop":"0%"}}>
                         <h3 >Login</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <ul className="list-style">
-                            <li><p><strong>Email:</strong> <a href="#">Webmag@email.com</a></p></li>
-                            <li><p><strong>Phone:</strong> 213-520-7376</p></li>
-                            <li><p><strong>Address:</strong> 3770 Oliver Street</p></li>
-                        </ul>
-                    </div>
+                        <img src="./img/about-1.jpg" style={{"width":"100%"}}/>
+                        </div>
                 </div>
                 <div className="col-md-5 col-md-offset-1">
                     <div className="section-row">
@@ -252,7 +249,7 @@ function LoginComp (){
                                     <button type="submit" className="primary-button">Sign In</button>
                                 </div>
                                 </form>
-                                <div className="col-md-12">
+                                <div className="col-md-12" style={{"marginTop":"3%"}}>
                                 <p>Dont have an account? <Link to="/signup">Sign Up</Link></p>
                                 </div>
                                 <div className="col-md-12">

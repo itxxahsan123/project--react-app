@@ -113,13 +113,9 @@ function ContactUs() {
                 <div className="col-md-6">
                     <div className="section-row">
                         <h3 >Contact Information</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <ul className="list-style">
-                            <li><p><strong>Email:</strong> <a href="#">Webmag@email.com</a></p></li>
-                            <li><p><strong>Phone:</strong> 213-520-7376</p></li>
-                            <li><p><strong>Address:</strong> 3770 Oliver Street</p></li>
-                        </ul>
-                    </div>
+                        <img src="./img/bannernew3.jpeg" style={{"width":"100%"}}/>
+                        <img src="./img/logo_1.png" alt="" className="image2" style={{"width":"30%","marginTop":"5%"}}/>
+                        </div>
                 </div>
                 <div className="col-md-5 col-md-offset-1">
                     <div className="section-row">

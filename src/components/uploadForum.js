@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import './uploadblogcss/card.css';
 import Axios from 'axios';
 import {toast} from 'react-toastify';
@@ -16,6 +16,17 @@ function UploadForum() {
     const [loading,setloading] =useState(false);
     const [isVerified,setIsVerified] =useState(false);
     const history = useHistory();
+    function componentDidRefresh()
+    {
+      if(!user)
+      {
+        history.replace("/login");
+      }
+    }
+
+    useEffect(() => {
+      componentDidRefresh()
+      }, [])
 
     const fileToDataUri = (file) => new Promise((resolve, reject) => {
       const reader = new FileReader();

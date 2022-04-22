@@ -12,6 +12,8 @@ function VerifyBlogs() {
     const [search, setSearch] = useState({title:'',tag:'',email:''});
     const [loading,setloading] =useState(false);
     const [asc,setasc] =useState(true);
+    const[user,setUser] = useState(JSON.parse(localStorage.getItem('blogUser')))
+
     function blogdetails(e,id)
     {
         history.replace(`/post/${id}`);
@@ -226,9 +228,19 @@ function VerifyBlogs() {
             search[e.target.id] = e.target.value
         }
     }
+    function componentDidRefresh()
+    {
+        debugger
+      if(!user)
+      {
+        history.replace("/login");
+      }
+    }
+
     useEffect(()=> {
         setloading(true);
         getBlogs();
+        componentDidRefresh();
       },[]);
     return (
         <div className="section">

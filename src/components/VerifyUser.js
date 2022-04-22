@@ -12,6 +12,16 @@ function VerifyUser() {
     const [loading,setloading] =useState(false);
     const [errMsg,setErrMsg] =useState('');
     const Obj = JSON.parse(params.id);
+    const[user,setUser] = useState(JSON.parse(localStorage.getItem('blogUser')))
+  
+    function componentDidMount()
+    {
+      if(!user)
+      {
+        history.replace("/login");
+      }
+    }
+  
     function validateUser()
     {
         debugger

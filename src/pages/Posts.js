@@ -10,7 +10,8 @@ toast.configure()
 
 function Posts() {
   const history = useHistory();
-    const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [page, setPage] = useState(0);
   const params = useParams();
   const [loading,setloading] =useState(false);
   function richtextToplaintext(str)
@@ -31,11 +32,13 @@ function Posts() {
   }
   function getAllBlogs()
   {
-    Axios.get(`${process.env.React_App_Api_Url}/api/blog/getAllblogs`).then(blogs => {
-      setPosts(blogs.data.blogs);
+    setPage(page+1);
+    setloading(true);
+    Axios.get(`${process.env.React_App_Api_Url}/api/blog/getAllblogs?page_no=${page}`).then(res => {
+      // setPosts(blogs.data.blogs);
       if(params.search!=='' & params.search!==undefined & params.search!==null)
       {
-        setPosts( blogs.data.blogs.filter((result)=>{
+        setPosts( res.data.blogs.filter((result)=>{
           if(result.title.toLowerCase().includes(params.search))
           {
             return result.title.toLowerCase().includes(params.search)
@@ -48,7 +51,19 @@ function Posts() {
       }
       else{
         setloading(false);
-        setPosts(blogs.data.blogs);
+        debugger
+        // setPosts(prevPosts=>{
+        //   return [...new Set([...prevPosts,...res.data.blogs.map( b =>b.id)])]
+        // })
+        // if(posts.length!==0)
+        // {
+          setPosts(prevPosts=>[...prevPosts,...res.data.blogs])
+        // }
+        // else{
+        //   setPosts(res.data.blogs)
+        // }
+        debugger
+        console.log(posts)
       }
     }).catch(err => {
       setloading(false);
@@ -70,6 +85,7 @@ function Posts() {
   }
   useEffect(() => {
     setloading(true);
+    window.scrollTo(0, 0);
     if(params.tag)
     {
       getBlogByCategory();
@@ -107,13 +123,20 @@ function Posts() {
                 <span >{richtextToplaintext(recentblog.text).substring(0, 200)}.....<Link to={`/post/${recentblog.id}`}>Read More</Link></span>
                 </div>
                     </div>
-                    </div>
+                  </div>
                 }         
                 </>
               )
 
             }):'No blog found.'
           }
+          <div className="col-md-12">
+          <div className="section-row">
+            <button className="primary-button center-block" onClick={(e)=>{getAllBlogs(e)}}>
+              Load More
+            </button>
+          </div>
+        </div>
           </div>
           </div>
           </div>

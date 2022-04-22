@@ -158,8 +158,17 @@ function Editblog() {
                console.log(err);
              })
          }
+         function componentDidMount()
+         {
+           if(!user)
+           {
+             history.replace("/login");
+           }
+         }
+       
     useEffect(()=> {
         getBlogById()
+        componentDidMount();
       },[]);
 
     return (

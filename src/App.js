@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+import IdleTimer from "./components/IdleTimer";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Header from './components/header';
@@ -25,10 +27,44 @@ import ResetPassword from "./components/ResetPassword";
 import Editblog from "./components/Editblog";
 import VerificationComp from "./components/VerificationComp";
 import VerifyUser from "./components/VerifyUser";
+import Privacypolicy from "./components/Privacypolicy";
+import Termsandcondition from "./components/Termsandcondition";
+import { useHistory } from 'react-router-dom';
+
 function App() {
+  const [isTimeout, setIsTimeout] = useState(false);
+  const history = useHistory();
+
+  function logOut()
+  {
+    localStorage.clear();
+    // history.replace("/login");
+    window.location.reload();
+  }
+
+  useEffect(() => {
+    const timer = new IdleTimer({
+      timeout: 900, //expire after 15 minutes
+      onTimeout: () => {
+        setIsTimeout(true);
+        logOut()
+      },
+      onExpired: () => {
+        // do something if expired on load
+        setIsTimeout(true);
+        logOut()
+      }
+    });
+
+    return () => {
+      timer.cleanUp();
+    };
+  }, []);
+
   return (
     <>
-    {/* http://3.223.54.220:3001*/}
+    {/* http://3.223.54.220:3001
+    <div>{isTimeout ? "Timeout" : "Active"}</div>;*/}
     <Router>     
         <Switch>
       
@@ -133,7 +169,15 @@ function App() {
           <Header ></Header>
           <VerifyUser></VerifyUser>
         </Route>
-          <Route exact path="/" >
+        <Route exact path="/termsandcondition">
+          <Header ></Header>
+          <Termsandcondition></Termsandcondition>
+        </Route>
+        <Route exact path="/privacypolicy">
+          <Header ></Header>
+          <Privacypolicy></Privacypolicy>
+        </Route>
+        <Route exact path="/" >
           <Home></Home>
           </Route>
     

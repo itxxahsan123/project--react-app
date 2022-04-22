@@ -54,12 +54,12 @@ function Footer() {
                 <div className="col-md-6">
                   <div className="footer-widget">
                     <h3 className="footer-title" >QUICK LINKS</h3>
-                    <ul className="footer-links" >
-                      <li style={{fontSize:"16px"}}><Link to="/about">About Us</Link></li>
-                      <li><Link to="/signup">Join Us</Link></li>
-                      <li><Link to="/login">Login</Link></li>
-                      <li ><Link to="/allblog">Blogs</Link></li>
-                      <li ><Link to="/allforum">Forums</Link></li>
+                    <ul className="footer-links" style={{"textAlign":"left"}}>
+                      <li><Link style={{fontSize:"16px","fontWeight":"bold","marginLeft":"30%"}} to="/about">About Us</Link></li>
+                      <li ><Link style={{fontSize:"16px","fontWeight":"bold","marginLeft":"30%"}} to="/allforum">Forums</Link></li>
+                      <li ><Link style={{fontSize:"16px","fontWeight":"bold","marginLeft":"30%"}} to="/allblog">Blogs</Link></li>
+                      <li ><Link style={{fontSize:"16px","fontWeight":"bold","marginLeft":"30%"}} to="/signup">Signup</Link></li>
+                      <li><Link style={{fontSize:"16px","fontWeight":"bold","marginLeft":"30%"}} to="/login">Login</Link></li>
                       </ul>
                   </div>
                 </div>
@@ -88,9 +88,15 @@ function Footer() {
                   <li><a href="https://www.instagram.com/jypragroup/" target="_blank"><i className="fa fa-instagram"></i></a></li>
                   <li><a href="https://twitter.com/JypraGroup" target="_blank"><i className="fa fa-twitter"></i></a></li>
                   <li><a href="https://www.linkedin.com/company/jypragroup" target="_blank"><i className="fa fa-linkedin"></i></a></li>
-                  <li><a href="mailto:info@jypragroup.com.au" target="_blank"><i className="fa fa-envelope"></i></a></li>
+                  <li><a href="mailto:info@learntohack.com.au" target="_blank"><i className="fa fa-envelope"></i></a></li>
                 </ul>
               </div>
+              <div className="footer-widget" style={{"marginTop":"5%"}}>
+              <ul className="footer-links" >
+                <li><Link style={{fontSize:"16px","fontWeight":"bold"}} to="/termsandcondition">Terms And Conditions</Link></li>
+                <li ><Link style={{fontSize:"16px","fontWeight":"bold"}} to="/privacypolicy">Privacy Policy</Link></li>
+                </ul>
+            </div>
             </div>
    
           </div>

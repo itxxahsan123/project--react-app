@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useHistory } from 'react-router-dom';
+
 toast.configure()
 
 function Myforums() {
     const [recentBlogs, setRecentBlogs] = useState([]);
     const[user,setUser] = useState(JSON.parse(localStorage.getItem('blogUser')))
     const [loading,setloading] =useState(false);
+    const history = useHistory();
     function componentDidMount()
     {
       Axios.get(`${process.env.React_App_Api_Url}/api/forum/getAllMyforums?id=${user.id}`).then(blogs => {
@@ -20,9 +23,18 @@ function Myforums() {
         setloading(false);
       });
     }
+    function componentDidRefresh()
+    {
+      if(!user)
+      {
+        history.replace("/login");
+      }
+    }
+
     useEffect(() => {
       setloading(true);
         componentDidMount();
+        componentDidRefresh();
       }, [])
       function splitDate(x)
       {

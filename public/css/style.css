@@ -1133,7 +1133,7 @@ RESPONSIVE
 }
 
 .carousel .slide img {
-    max-height: 400px;  /* change this to whatever you want */
+    max-height: 360px;  /* change this to whatever you want */
     width: auto;
     
 }
@@ -1455,7 +1455,7 @@ input[type=number] {
     left: 35%;
     border: 1px green solid;
     height:75%;
-
+    width:50%;
   }
   .fixed {
     position: fixed;

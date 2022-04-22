@@ -81,27 +81,6 @@ function Header(props) {
   }, [])
     return (
      <header id="header" className="sticky" style={{"zIndex":"1000"}}> 
-     <div id="nav" style={{"opacity":"0.5"}}>
-          <div id="nav-fixed">
-            <div className="container" style={{"marginLeft":"-2%","width":"100%"}}>
-                <ul className="nav-menu nav navbar-nav" >
-                     { tags.length!=0 ?
-                      tags.map( (tag,index)=>{
-                        return (
-                          <>
-                              {
-                                index<11?
-                                <li ><Link to={`/allblog/${tag.tag}`} style={{textTransform:"uppercase",fontSize:"12px"}}>{tag.tag}</Link></li>
-                                :''
-                              }
-                          </>
-                        )
-                      }):''
-                    }                   
-                </ul>
-            </div>
-          </div>
-      </div>     
      <div id="nav" >
           <div id="nav-fixed">
             <div className="container" style={{"marginLeft":"0%","width":"100%"}}>
@@ -116,26 +95,32 @@ function Header(props) {
                     {
                       token.role=="admin" ?
                       <>
-                        <li ><Link to="/login" onClick={logOut}>Log out</Link></li>
-                        </>
+                      <li ><Link to="/about">ABOUT US</Link></li>
+                      <li ><Link to="/allforum">FORUMS</Link></li>
+                      <li ><Link to="/allblog">BLOGS</Link></li>
+                      <li ><Link to="/uploadblog">SUBMIT BLOG</Link></li>
+                      <li ><Link to="/contactus">CONTACT US</Link></li>    
+                      </>
                       :
                       <> 
-                      <li ><Link to="/allblog">BLOGS</Link></li>
+                      <li ><Link to="/about">ABOUT US</Link></li>
                       <li ><Link to="/allforum">FORUMS</Link></li>
-                      <li><Link to="/uploadblog" >SUBMIT BLOG</Link></li>
-                      <li ><Link to="/login" onClick={logOut}>LOG OUT</Link></li>
+                      <li ><Link to="/allblog">BLOGS</Link></li>
+                      <li ><Link to="/uploadblog">SUBMIT BLOG</Link></li>
+                      <li ><Link to="/contactus">CONTACT US</Link></li>    
                       </>
                     }
 
                   </>
                   : <> 
+                  <li ><Link to="/about">ABOUT US</Link></li>
                   <li ><Link to="/allforum">FORUMS</Link></li>
                   <li ><Link to="/allblog">BLOGS</Link></li>
-                  <li><Link to="/login" >LOGIN</Link></li>
-                  <li><Link to="/uploadblog" >SUBMIT BLOG</Link></li>
+                  <li ><Link to="/uploadblog">SUBMIT BLOG</Link></li>
+                  <li ><Link to="/contactus">CONTACT US</Link></li>
                   </>
                 }
-              </ul>
+                </ul>
               <div className="nav-btns" >
                 {
                   showsearch?                
@@ -148,11 +133,32 @@ function Header(props) {
                   </div>
                   :
                   <>
-                  <a href="https://www.facebook.com/JypraGroupAU" target="_blank" className="share-facebook"><i className="fa fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
-                  <a href="https://www.instagram.com/jypragroup/" target="_blank" className="share-twitter"><i className="fa fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;
-                  <a href="https://twitter.com/JypraGroup" target="_blank" className="share-twitter"><i className="fa fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
-                  <a href="https://www.linkedin.com/company/jypragroup" target="_blank" className="share-linkedin"><i className="fa fa-linkedin"></i></a>&nbsp;&nbsp;&nbsp;
-                  <a href="mailto:info@jypragroup.com.au" target="_blank"><i className="fa fa-envelope"></i></a>&nbsp;&nbsp;&nbsp;
+                  {
+                    token?                        
+                    <>
+                    <Link to="/login" onClick={logOut}>LOG OUT</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </>
+                    :
+                    <>
+                    <Link to="/login" style={{textDecoration:"none"}}>LOGIN</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Link to="/signup" style={{textDecoration:"none"}}>SIGNUP</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                    </>
+                  }
+                  <a href="https://www.facebook.com/JypraGroupAU" target="_blank"  style={{"backgroundColor":"rgba(0,0,0,.75)",
+                  "width":"30px","height":"30px","display":"inline-block","textAlign":"center","borderRadius":"2px",}}><i className="fa fa-facebook" style={{"marginTop":"8px"}}></i></a>&nbsp;&nbsp;
+
+                  <a href="https://www.instagram.com/jypragroup/" target="_blank" style={{"backgroundColor":"rgba(0,0,0,.75)",
+                  "width":"30px","height":"30px","display":"inline-block","textAlign":"center","borderRadius":"2px",}}><i className="fa fa-instagram" style={{"marginTop":"8px"}}></i></a>&nbsp;&nbsp;
+
+                  <a href="https://twitter.com/JypraGroup" target="_blank" style={{"backgroundColor":"rgba(0,0,0,.75)",
+                  "width":"30px","height":"30px","display":"inline-block","textAlign":"center","borderRadius":"2px",}}><i className="fa fa-twitter" style={{"marginTop":"8px"}}></i></a>&nbsp;&nbsp;
+
+                  <a href="https://www.linkedin.com/company/jypragroup" target="_blank" style={{"backgroundColor":"rgba(0,0,0,.75)",
+                  "width":"30px","height":"30px","display":"inline-block","textAlign":"center","borderRadius":"2px",}}><i className="fa fa-linkedin" style={{"marginTop":"8px"}}></i></a>&nbsp;&nbsp;
+
+                  <a href="mailto:info@learntohack.com.au" target="_blank" style={{"backgroundColor":"rgba(0,0,0,.75)",
+                  "width":"30px","height":"30px","display":"inline-block","textAlign":"center","borderRadius":"2px",}}><i className="fa fa-envelope" style={{"marginTop":"8px"}}></i></a>&nbsp;&nbsp;
+
                   <button className="search-btn"><i className=" faviconcolor fa fa-search" onClick={()=>{setSearch(true)}}></i></button>
                   <button className="aside-btn"><i className="faviconcolor fa fa-bars" ></i></button>
                   </>
@@ -166,28 +172,26 @@ function Header(props) {
               <div style={{"backgroundColor":"#000","width":"100%","padding":"10px 10px 10px 10px","marginTop":"-10%","marginBottom":"10%"}}>
               <div className="section-row">
                   <h3 style={{"color":"#fff"}}>Follow us</h3>
-                  <ul className="nav-aside-social">
+                  <ul className="footer-social">
                     <li><a href="https://www.facebook.com/JypraGroupAU"><i className="fa fa-facebook"></i></a></li>
                     <li><a href="https://www.instagram.com/jypragroup/"><i className="fa fa-instagram"></i></a></li>
                     <li><a href="https://twitter.com/JypraGroup"><i className="fa fa-twitter"></i></a></li>
                     <li><a href="https://www.linkedin.com/company/jypragroup"><i className="fa fa-linkedin"></i></a></li>
-                    <li><a href="mailto:info@jypragroup.com.au"><i className="fa fa-google-plus"></i></a></li>
+                    <li><a href="mailto:info@learntohack.com.au"><i className="fa fa-google-plus"></i></a></li>
                   </ul>
                  {token? 
                   <button style={{"marginTop":"5%","width":"100%","backgroundColor":"#fff","padding":"10px 10px 10px 10px","color":"#7abd13","fontSize":"20px"}} >
                   <Link to="/login" style={{"color":"#7abd13"}}>
-                  <i className="fa fa-users" style={{"color":"#7abd13"}}></i>&nbsp;&nbsp;
                   EDIT PROFILE</Link>
                   </button>:
                  <button style={{"marginTop":"5%","width":"100%","backgroundColor":"#fff","padding":"10px 10px 10px 10px","color":"#7abd13","fontSize":"20px"}} >
                  <Link to="/login" style={{"color":"#7abd13"}}>
-                 <i className="fa fa-users" style={{"color":"#7abd13"}}></i>&nbsp;&nbsp;
-                 LOGIN OR SIGNUP</Link>
+                 LOGIN</Link>
                  </button>}
               </div>
               </div>
               <button style={{"width":"100%","backgroundColor":"#7abd13",
-              "padding":"20px 20px 20px 20px","color":"#fff","fontSize":"25px","textAlign":"left","marginBottom":"5%"}} >
+              "padding":"10px 10px 10px 10px","color":"#fff","fontSize":"25px","textAlign":"left","marginBottom":"5%"}} >
               QUICK LINKS
               </button>
                 <li  className="nav-aside-close"><Link to="/">HOME</Link></li>
@@ -230,7 +234,7 @@ function Header(props) {
             </div>
             <div className="section-row">
             <button style={{"width":"100%","backgroundColor":"#7abd13",
-            "padding":"20px 20px 20px 20px","color":"#fff","fontSize":"25px","textAlign":"left","marginBottom":"5%"}} >
+            "padding":"10px 10px 10px 10px","color":"#fff","fontSize":"25px","textAlign":"left","marginBottom":"5%"}} >
             RECENT POSTS
             </button>
               {
@@ -254,7 +258,7 @@ function Header(props) {
                </div>
                <div className="section-row">
                <button style={{"width":"100%","backgroundColor":"#7abd13",
-               "padding":"20px 20px 20px 20px","color":"#fff","fontSize":"25px","textAlign":"left","marginBottom":"5%"}} >
+               "padding":"10px 10px 10px 10px","color":"#fff","fontSize":"25px","textAlign":"left","marginBottom":"5%"}} >
                RECENT FORUMS
                </button>
                  {
@@ -279,7 +283,7 @@ function Header(props) {
                 
                   <div className="section-row">
                   <button style={{"width":"100%","backgroundColor":"#7abd13",
-                  "padding":"20px 20px 20px 20px","color":"#fff","fontSize":"25px","textAlign":"left","marginBottom":"5%"}} >
+                  "padding":"10px 10px 10px 10px","color":"#fff","fontSize":"25px","textAlign":"left","marginBottom":"5%"}} >
                   CATEGORIES
                   </button>
                   <div className="category-widget" style={{"padding":"10px 20px 10px 20px"}}>
@@ -314,6 +318,20 @@ function Header(props) {
             {/*} <button className="nav-aside-close"><i className="faviconcolor fa fa-times"></i></button>*/}
           </div>
         </div>
+        <div id="nav" style={{"opacity":"0.5",}}>
+        <div id="nav-fixed">
+          <div className="container" style={{"marginLeft":"-2%","width":"100%","height":"40px"}}>
+              <ul className="nav-menu nav navbar-nav" >
+                              <li ><Link to={`/allblog/Technology`} style={{textTransform:"uppercase",fontSize:"12px",marginTop:"-10%"}}>TECHNOLOGY</Link></li>
+                              <li ><Link to={`/allblog/Penetration testing`} style={{textTransform:"uppercase",fontSize:"12px",marginTop:"-7%"}}>PENETRATION TESTING</Link></li>
+                              <li ><Link to={`/allblog/CTF`} style={{textTransform:"uppercase",fontSize:"12px",marginTop:"-20%"}}>CTF</Link></li>
+                              <li ><Link to={`/allblog/Resources`} style={{textTransform:"uppercase",fontSize:"12px",marginTop:"-11%"}}>RESOURCES</Link></li>
+                              <li ><Link to={`/allblog/Passing OSCP`} style={{textTransform:"uppercase",fontSize:"12px",marginTop:"-9%"}}>PASSING OSCP</Link></li>
+              </ul>
+          </div>
+        </div>
+    </div>     
+
       </header>
 
     )

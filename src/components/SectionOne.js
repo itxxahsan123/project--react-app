@@ -67,7 +67,7 @@ function SectionOne () {
    <>
     <Carousel infiniteLoop={true} showIndicators={false} showThumbs={false} showStatus={false} autoPlay dynamicHeight={false} >
         <div className="parent">
-        <img src="./img/bannernew2.jpeg" alt="" className="image1"/>
+        <img src="./img/blog-banner.png" alt="" className="image1"/>
         <img src="./img/logo_1.png" alt="" className="image2" style={{"width":"30%"}}/>
           </div>
          {/* <div >

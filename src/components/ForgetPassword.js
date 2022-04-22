@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState,useEffect } from 'react'
 import Axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,6 +13,8 @@ function ForgetPassword() {
     const history = useHistory();
     const [user, setUserState] = useState({email:''});
     const [isVerified,setIsVerified] =useState(false);
+    const [user1,setUser] = useState(JSON.parse(localStorage.getItem('blogUser')));
+
     function forgetPassword(e)
     {
         setloading(true);
@@ -50,21 +52,27 @@ function ForgetPassword() {
             setIsVerified(true);
         }
     }
+    function componentDidMount()
+    {
+      if(!user1)
+      {
+        history.replace("/login");
+      }
+    }
+    useEffect(()=> {
+        //componentDidMount();
+      },[]);
+
     return (
         <div className="section">
         <div className="container">
             <div className="row">
                 <div className="col-md-6">
-                    <div className="section-row">
-                        <h3>Forget Password</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <ul className="list-style">
-                            <li><p><strong>Email:</strong> <a href="#">Webmag@blog.com</a></p></li>
-                            <li><p><strong>Phone:</strong> 213-520-7376</p></li>
-                            <li><p><strong>Address:</strong> 3770 Oliver Street</p></li>
-                        </ul>
-                    </div>
+                <div className="section-row" style={{"marginTop":"0%"}}>
+                <h3 >Forget Password</h3>
+                <img src="./img/about-1.jpg" style={{"width":"100%"}}/>
                 </div>
+        </div>
                 <div className="col-md-5 col-md-offset-1">
                     <div className="section-row">
                         <h3>Enter your Email to Reset Password</h3>

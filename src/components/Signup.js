@@ -18,6 +18,8 @@ function SignupComp(e) {
     function componentDidMount(e) {
         e.preventDefault();
         setloading(true);
+     if(validateEmail(user.email))
+     {
         if(isVerified)
         {
             if(message.whiteSpace === true && message.specialCharacter === true && message.numberPresent === true
@@ -62,6 +64,11 @@ function SignupComp(e) {
         else
         {
             toast.error('Please verify that you are human.');
+            setloading(false);
+        }
+     }
+     else{
+            toast.error('Email format not correct.');
             setloading(false);
         }
     }
@@ -189,7 +196,14 @@ function SignupComp(e) {
         // }
        return null;
       }
-      
+    function validateEmail(email) {
+
+        return String(email)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+      }
     return (
         <div>
         {loading?<div class="loading"></div>:''} 
@@ -213,12 +227,7 @@ function SignupComp(e) {
                 <div className="col-md-6">
                     <div className="section-row">
                         <h3>Register</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <ul className="list-style">
-                            <li><p><strong>Email:</strong> <a href="#">Webmag@email.com</a></p></li>
-                            <li><p><strong>Phone:</strong> 213-520-7376</p></li>
-                            <li><p><strong>Address:</strong> 3770 Oliver Street</p></li>
-                        </ul>
+                        <img src="./img/about-2.jpg" style={{"width":"100%"}}/>
                     </div>
                 </div>
                 <div className="col-md-5 col-md-offset-1">
@@ -241,8 +250,7 @@ function SignupComp(e) {
                                 <div className="col-md-7">
                                     <div className="form-group">
                                         <span>Email</span>
-                                        <input className="input" autocomplete="off" type="email" name="email" id="email" onChange={onChange} required 
-                                        pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"/>
+                                        <input className="input" autocomplete="off" type="email" name="email" id="email" onChange={onChange} required />
                                     </div>
                                 </div>
                                 <div className="col-md-7">
@@ -259,28 +267,28 @@ function SignupComp(e) {
                                         (<i className="fa fa-eye mr-3" onClick={(e)=>{setShowPassword(!showPassword)}}></i>)}
                                         {
                                             message?message.numberPresent?
-                                            <p style={{"color":"green"}}>- Must contain number.</p>:
-                                            <p style={{"color":"red"}}>- Must contain number.</p>:''
+                                            <p style={{"color":"green","fontSize":"12px"}}>- Must contain number.</p>:
+                                            <p style={{"color":"red","fontSize":"12px"}}>- Must contain number.</p>:''
                                         }
                                         {
                                             message?message.UpperCase?
-                                            <p style={{"color":"green"}}>- Must contain capital letter.</p>:
-                                            <p style={{"color":"red"}}>- Must contain capital letter.</p>:''
+                                            <p style={{"color":"green","fontSize":"12px","marginTop":"-5%"}}>- Must contain capital letter.</p>:
+                                            <p style={{"color":"red","fontSize":"12px","marginTop":"-5%"}}>- Must contain capital letter.</p>:''
                                         }
                                         {
                                             message?message.specialCharacter?
-                                            <p style={{"color":"green"}}>- Must contain special character.</p>:
-                                            <p style={{"color":"red"}}>- Must contain special character.</p>:''
+                                            <p style={{"color":"green","fontSize":"12px","marginTop":"-5%"}}>- Must contain special character.</p>:
+                                            <p style={{"color":"red","fontSize":"12px","marginTop":"-5%"}}>- Must contain special character.</p>:''
                                         }
                                         {
                                             message?message.lengthGreaterthen8?
-                                            <p style={{"color":"green"}}>- Password length should be greater then 8.</p>:
-                                            <p style={{"color":"red"}}>- Password length should be greater then 8.</p>:''
+                                            <p style={{"color":"green","fontSize":"12px","marginTop":"-5%"}}>- Password length should be greater then 8.</p>:
+                                            <p style={{"color":"red","fontSize":"12px","marginTop":"-5%"}}>- Password length should be greater then 8.</p>:''
                                         }
                                         {
                                             message?message.whiteSpace?
-                                            <p style={{"color":"green"}}>- Password must not contain Whitespaces.</p>:
-                                            <p style={{"color":"red"}}>- Password must not contain Whitespaces.</p>:''
+                                            <p style={{"color":"green","fontSize":"12px","marginTop":"-5%"}}>- Password must not contain Whitespaces.</p>:
+                                            <p style={{"color":"red","fontSize":"12px","marginTop":"-5%"}}>- Password must not contain Whitespaces.</p>:''
                                         }
                                     </div>
                                 </div>
@@ -308,7 +316,7 @@ function SignupComp(e) {
                                 </div>
                             </div>
                         </form>
-                        <div className="col-md-12">
+                        <div className="col-md-12" style={{"marginTop":"3%"}}>
                         <p>Already have an account? <Link to="/login">Sign In</Link></p>
                         </div>
                     </div>

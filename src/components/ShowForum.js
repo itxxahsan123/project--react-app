@@ -10,10 +10,12 @@ function ShowForum() {
     const [allForums, setallForums] = useState([]);
     const [tags, settags] = useState([]); 
     const [loading,setloading] =useState(false);
+    const [page, setPage] = useState(0);
 
     function componentDidMount()
     {
-       Axios.get(`${process.env.React_App_Api_Url}/api/forum/getAllforums`).then(blogs => {
+      setPage(page+1);
+       Axios.get(`${process.env.React_App_Api_Url}/api/forum/getAllforums?page_no=${page}`).then(blogs => {
           console.log('All Forum',blogs);
           setallForums(blogs.data.blogs)
           setloading(false);
@@ -79,6 +81,13 @@ function ShowForum() {
                             }):''
                           }
                     </div>
+                    <div className="col-md-12">
+                    <div className="section-row">
+                      <button className="primary-button center-block" onClick={(e)=>{componentDidMount(e)}}>
+                        Load More
+                      </button>
+                    </div>
+                  </div>
                 </div>
         <div className="col-md-4">
               <div className="aside-widget">

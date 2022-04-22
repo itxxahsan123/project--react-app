@@ -13,6 +13,16 @@ function Admincontactus() {
     const [search, setSearch] = useState({name:'',mobile:'',email:''});
     const [loading,setloading] =useState(false);
     const [asc,setasc] =useState(true);
+    const[user,setUser] = useState(JSON.parse(localStorage.getItem('blogUser')))
+
+    
+    function componentDidMount()
+    {
+      if(!user)
+      {
+        history.replace("/login");
+      }
+    }
     function splitDate(x)
     {
         let y = x.split('T');
@@ -174,6 +184,7 @@ function Admincontactus() {
     useEffect(()=> {
         setloading(true);
         getBlogs();
+        componentDidMount();
       },[]);
     return (
         <div className="section">

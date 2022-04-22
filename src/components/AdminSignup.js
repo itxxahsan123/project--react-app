@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import Axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom";
 import ReCAPTCHA from 'react-google-recaptcha';
+import { useHistory } from 'react-router-dom';
 
 toast.configure()
 
@@ -11,6 +12,15 @@ function AdminSignup() {
     const [user, setUserState] = useState({firstName:'',email:'',lastName:'',mobile:'',password:'',role:'admin',userPrivilegeId:1});
     const [loading,setloading] =useState(false);
     const [isVerified,setIsVerified] =useState(false);
+    const history = useHistory();
+
+    function componentRefresh()
+    {
+      if(!user)
+      {
+        history.replace("/login");
+      }
+    }
     function componentDidMount(e) {
         e.preventDefault();
         setloading(true);
@@ -63,6 +73,10 @@ function AdminSignup() {
             setIsVerified(true);
         }
     }
+    useEffect(()=> {
+        componentRefresh();
+      },[]);
+
     return (
         <div>
         {loading?<div class="loading"></div>:''} 
@@ -71,13 +85,8 @@ function AdminSignup() {
             <div className="row">
                 <div className="col-md-6">
                     <div className="section-row">
-                        <h3>Signup</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <ul className="list-style">
-                            <li><p><strong>Email:</strong> <a href="#">Webmag@email.com</a></p></li>
-                            <li><p><strong>Phone:</strong> 213-520-7376</p></li>
-                            <li><p><strong>Address:</strong> 3770 Oliver Street</p></li>
-                        </ul>
+                        <h3>Create New Admin</h3>
+                        <img src="./img/about-2.jpg" style={{"width":"100%"}}/>
                     </div>
                 </div>
                 <div className="col-md-5 col-md-offset-1">

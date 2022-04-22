@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState,useEffect } from 'react'
 import Axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -162,6 +162,17 @@ function ResetPassword() {
         }
         setMessage(newUser);
     }
+    function componentDidRefresh()
+    {
+      if(!user)
+      {
+        history.replace("/login");
+      }
+    }
+
+    useEffect(() => {
+      componentDidRefresh()
+      }, [])
     return (
         <div className="section">
         <div className="container">

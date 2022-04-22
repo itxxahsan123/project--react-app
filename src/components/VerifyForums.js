@@ -14,6 +14,7 @@ function VerifyForums() {
     const [tempBlog, settempBlog] = useState([]);
     const [loading,setloading] =useState(false);
     const [asc,setasc] =useState(true);
+    const[user,setUser] = useState(JSON.parse(localStorage.getItem('blogUser')))
     function forumdetails(e,id)
     {
         history.replace(`/forum/${id}`);
@@ -201,9 +202,17 @@ function VerifyForums() {
             search[e.target.id] = e.target.value
         }
     }
+    function componentDidRefresh()
+    {
+      if(!user)
+      {
+        history.replace("/login");
+      }
+    }
     useEffect(()=> {
         setloading(true);
         getForums();
+        componentDidRefresh();
       },[]);
     return (
         <div>
