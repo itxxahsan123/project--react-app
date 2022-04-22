@@ -18,7 +18,6 @@ import Admin from "./components/Admin";
 import VerifyBlogs from "./components/VerifyBlogs";
 import VerifyForums from "./components/VerifyForums";
 import AdminSignup from "./components/AdminSignup";
-import { Carousel } from "react-responsive-carousel";
 import Myforums from "./components/Myforums";
 import Contactus from "./pages/Contactus";
 import Admincontactus from "./components/Admincontactus";

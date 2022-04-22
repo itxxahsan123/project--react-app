@@ -2,7 +2,6 @@ import React, { useState ,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import {toast} from 'react-toastify';
-import { Carousel } from "react-responsive-carousel";
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
 import Header from './header';
@@ -65,18 +64,12 @@ function SectionOne () {
   
     return (
    <>
-    <Carousel infiniteLoop={true} showIndicators={false} showThumbs={false} showStatus={false} autoPlay dynamicHeight={false} >
+    <div style={{"height":"360px","width":"100%"}}>
         <div className="parent">
-        <img src="./img/blog-banner.png" alt="" className="image1"/>
+        <img src="./img/blog-banner.png" alt="" className="image1" style={{"height":"360px","width":"100%"}}/>
         <img src="./img/logo_1.png" alt="" className="image2" style={{"width":"30%"}}/>
           </div>
-         {/* <div >
-              <img src="./img/banner7.jpeg" alt="" />
-          </div>
-          <div >
-              <img src="./img/banner8.jpeg" alt="" />
-         </div>*/}
-    </Carousel>
+    </div>
     <Header ></Header>
     <div className="section" >
    {loading?<div class="loading"></div>:''} 

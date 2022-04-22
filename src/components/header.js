@@ -4,7 +4,6 @@ import Axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
-import Carousel from "../components/carousel";
 import $ from 'jquery';
 toast.configure()
 function Header(props) {
