@@ -171,7 +171,7 @@ function Header(props) {
               <div style={{"backgroundColor":"#000","width":"100%","padding":"10px 10px 10px 10px","marginTop":"-10%","marginBottom":"10%"}}>
               <div className="section-row">
                   <h3 style={{"color":"#fff"}}>Follow us</h3>
-                  <ul className="footer-social" style={{"textAlign":"center"}}>
+                  <ul className="footer-social" style={{"textAlign":"center","marginRight":"10%"}}>
                     <li><a href="https://www.facebook.com/JypraGroupAU"><i className="fa fa-facebook"></i></a></li>
                     <li><a href="https://www.instagram.com/jypragroup/"><i className="fa fa-instagram"></i></a></li>
                     <li><a href="https://twitter.com/JypraGroup"><i className="fa fa-twitter"></i></a></li>
