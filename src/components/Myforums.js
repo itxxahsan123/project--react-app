@@ -35,6 +35,7 @@ function Myforums() {
       setloading(true);
         componentDidMount();
         componentDidRefresh();
+        window.scrollTo(0, 0);
       }, [])
       function splitDate(x)
       {

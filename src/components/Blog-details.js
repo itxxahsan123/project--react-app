@@ -105,6 +105,8 @@ function Blogdetails() {
         mostRead()
         featuredBlogs()
         getBlogById()
+        window.scrollTo(0, 0);
+
       },[history.location.pathname]);
     return (
         <>

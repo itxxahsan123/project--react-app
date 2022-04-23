@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState,useEffect } from 'react'
 import Axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -117,6 +117,11 @@ function LoginComp (){
             setIsVerified(true);
         }
     }
+    useEffect(()=> {
+        window.scrollTo(0, 0);
+
+      },[]);
+
     return (
         <div>
        {loading?<div class="loading"></div>:''} 

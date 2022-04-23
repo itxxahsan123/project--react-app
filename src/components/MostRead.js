@@ -52,6 +52,7 @@ function MostRead () {
     setloading(true);
     getTags()
     componentDidMount()
+    window.scrollTo(0, 0);
   }, [])
 
     return (

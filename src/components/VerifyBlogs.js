@@ -241,6 +241,7 @@ function VerifyBlogs() {
         setloading(true);
         getBlogs();
         componentDidRefresh();
+        window.scrollTo(0, 0);
       },[]);
     return (
         <div className="section">

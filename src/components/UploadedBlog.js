@@ -25,6 +25,7 @@ function UploadedBlog({img}) {
   useEffect(() => {
     setloading(true);
     getBlogByCategory();
+    window.scrollTo(0, 0);
   }, [])
     return (
         <div className="post">

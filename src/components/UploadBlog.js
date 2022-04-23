@@ -174,6 +174,7 @@ function UploadBlog() {
   useEffect(() => {
     setloading(true);
     componentDidMount();
+    window.scrollTo(0, 0);
   }, [])
     return (
       < >

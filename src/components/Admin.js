@@ -162,6 +162,8 @@ function Admin() {
         setloading(true);
         getUsers();
         componentDidMount();
+        window.scrollTo(0, 0);
+
       },[]);
     return (
         <div className="section">

@@ -73,6 +73,8 @@ function ForumDetails() {
         getForumById();
         mostRead()
         featuredBlogs()
+        window.scrollTo(0, 0);
+
       },[]);
       function createComment(e)
       {
@@ -126,6 +128,8 @@ function ForumDetails() {
           }
           setComment(newUser);
       }
+
+
     return (
         <>
         {loading?<div className="loading">

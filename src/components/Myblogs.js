@@ -39,6 +39,7 @@ function Myblogs() {
 
     useEffect(() => {
       setloading(true);
+      window.scrollTo(0, 0);
       componentDidMount();
       componentDidRefresh()
       }, [])

@@ -169,6 +169,8 @@ function Editblog() {
     useEffect(()=> {
         getBlogById()
         componentDidMount();
+        window.scrollTo(0, 0);
+
       },[]);
 
     return (

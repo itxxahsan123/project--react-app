@@ -5,9 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { render } from 'react-dom';
 import Blogdetails from './Blog-details';
 import { Link } from 'react-router-dom';
-
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
 toast.configure()
 function CarouselC() {
     const [featuredblogs, setfeaturedblogs] = useState([]);  
@@ -29,17 +26,7 @@ function CarouselC() {
       componentDidMount();
     }, [])
     return (
-       
-         <Carousel style={{"height":"50%",}} autoPlay>
-            {featuredblogs.length!=0 ? featuredblogs.map( (featuredblog,index) => {
-                return (
-                    <>
-                    <Link className="post-img" to={`/post/${featuredblog.id}`}><img src={featuredblog.image} alt="" /></Link>
-                        <h1 className="post-title">{featuredblog.title}</h1>
-                        </>
-                )
-            }):<div>No Featured Blogs</div>} 
-      </Carousel>
+        <></>
 
     )
 }

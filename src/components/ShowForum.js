@@ -37,6 +37,7 @@ function ShowForum() {
         setloading(true);
         componentDidMount();
         getTags();
+        window.scrollTo(0, 0);
       }, [])
     function splitDate(x)
     {

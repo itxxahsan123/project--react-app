@@ -317,7 +317,7 @@ function Header(props) {
             {/*} <button className="nav-aside-close"><i className="faviconcolor fa fa-times"></i></button>*/}
           </div>
         </div>
-        <div id="nav" style={{"opacity":"0.5",}}>
+        <div id="nav" style={{"opacity":"0.5",}} className="secondnav">
         <div id="nav-fixed">
           <div className="container" style={{"marginLeft":"-2%","width":"100%","height":"40px"}}>
               <ul className="nav-menu nav navbar-nav" >

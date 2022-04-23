@@ -213,6 +213,7 @@ function VerifyForums() {
         setloading(true);
         getForums();
         componentDidRefresh();
+        window.scrollTo(0, 0);
       },[]);
     return (
         <div>

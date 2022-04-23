@@ -26,7 +26,8 @@ function UploadForum() {
 
     useEffect(() => {
       componentDidRefresh()
-      }, [])
+      window.scrollTo(0, 0);
+    }, [])
 
     const fileToDataUri = (file) => new Promise((resolve, reject) => {
       const reader = new FileReader();

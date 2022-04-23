@@ -172,7 +172,8 @@ function ResetPassword() {
 
     useEffect(() => {
       componentDidRefresh()
-      }, [])
+      window.scrollTo(0, 0);
+    }, [])
     return (
         <div className="section">
         <div className="container">

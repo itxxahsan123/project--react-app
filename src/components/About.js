@@ -38,6 +38,8 @@ function About() {
         setloading(true);
         mostRead()
         featuredBlogs()
+        window.scrollTo(0, 0);
+
       },[]);
     return (
         <div className="section">

@@ -75,6 +75,8 @@ function AdminSignup() {
     }
     useEffect(()=> {
         componentRefresh();
+        window.scrollTo(0, 0);
+
       },[]);
 
     return (

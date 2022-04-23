@@ -60,6 +60,8 @@ function ForgetPassword() {
       }
     }
     useEffect(()=> {
+        window.scrollTo(0, 0);
+
         //componentDidMount();
       },[]);
 

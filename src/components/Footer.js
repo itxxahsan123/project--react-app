@@ -54,17 +54,24 @@ function Footer() {
                 <div className="col-md-6">
                   <div className="footer-widget">
                     <h3 className="footer-title" >QUICK LINKS</h3>
-                    <ul className="footer-links" style={{"textAlign":"left"}}>
+                    <ul className="footer-links2" style={{"marginBottom":"5%"}}>
                       <li><Link style={{fontSize:"16px","fontWeight":"bold","marginLeft":"30%"}} to="/about">About Us</Link></li>
                       <li ><Link style={{fontSize:"16px","fontWeight":"bold","marginLeft":"30%"}} to="/allforum">Forums</Link></li>
                       <li ><Link style={{fontSize:"16px","fontWeight":"bold","marginLeft":"30%"}} to="/allblog">Blogs</Link></li>
                       <li ><Link style={{fontSize:"16px","fontWeight":"bold","marginLeft":"30%"}} to="/signup">Signup</Link></li>
-                      <li><Link style={{fontSize:"16px","fontWeight":"bold","marginLeft":"30%"}} to="/login">Login</Link></li>
+                      <li><Link style={{fontSize:"16px","fontWeight":"bold","marginLeft":"30%",}} to="/login">Login</Link></li>
+                      </ul>
+                      <ul className="footer-links1" style={{"marginBottom":"5%"}}>
+                      <li><Link style={{fontSize:"16px","fontWeight":"bold",}} to="/about">About Us</Link></li>
+                      <li ><Link style={{fontSize:"16px","fontWeight":"bold",}} to="/allforum">Forums</Link></li>
+                      <li ><Link style={{fontSize:"16px","fontWeight":"bold",}} to="/allblog">Blogs</Link></li>
+                      <li ><Link style={{fontSize:"16px","fontWeight":"bold",}} to="/signup">Signup</Link></li>
+                      <li><Link style={{fontSize:"16px","fontWeight":"bold",}} to="/login">Login</Link></li>
                       </ul>
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <div className="footer-widget">
+                  <div className="footer-widget" style={{"marginBottom":"5%"}}>
                     <h3 className="footer-title">CONTACT US</h3>
                     <ul className="footer-links">
                            <li><Link to="/contactus">Send Us A Message</Link></li>
@@ -97,6 +104,10 @@ function Footer() {
                 <li ><Link style={{fontSize:"16px","fontWeight":"bold"}} to="/privacypolicy">Privacy Policy</Link></li>
                 </ul>
             </div>
+            <div className="footer-copyright1">
+            <span>&copy;
+Copyright 2022 Blogging.<script>document.write(new Date().getFullYear());</script> All rights reserved. </span>
+          </div>
             </div>
    
           </div>
