@@ -68,7 +68,7 @@ function SectionOne () {
     <div style={{"height":"360px","width":"100%"}}>
         <div className="parent">
         <img src="./img/blog-banner.png" alt="" className="image1" style={{"height":"360px","width":"100%"}}/>
-        <img src="./img/logo_1.png" alt="" className="image2" style={{"width":"30%"}}/>
+        {/*<img src="./img/logo_1.png" alt="" className="image2" style={{"width":"30%"}}/>*/}
           </div>
     </div>
     <Header ></Header>

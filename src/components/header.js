@@ -143,17 +143,17 @@ function Header(props) {
                     <Link to="/signup" style={{textDecoration:"none"}}>SIGNUP</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
                     </>
                   }
-                  <a href="https://www.facebook.com/JypraGroupAU" target="_blank"  style={{"backgroundColor":"rgba(0,0,0,.75)",
+                  <a href="https://www.facebook.com/Learntohack" target="_blank"  style={{"backgroundColor":"rgba(0,0,0,.75)",
                   "width":"30px","height":"30px","display":"inline-block","textAlign":"center","borderRadius":"2px",}}><i className="fa fa-facebook" style={{"marginTop":"8px"}}></i></a>&nbsp;&nbsp;
 
-                  <a href="https://www.instagram.com/jypragroup/" target="_blank" style={{"backgroundColor":"rgba(0,0,0,.75)",
+                  <a href="https://www.instagram.com/learntohack7/" target="_blank" style={{"backgroundColor":"rgba(0,0,0,.75)",
                   "width":"30px","height":"30px","display":"inline-block","textAlign":"center","borderRadius":"2px",}}><i className="fa fa-instagram" style={{"marginTop":"8px"}}></i></a>&nbsp;&nbsp;
 
-                  <a href="https://twitter.com/JypraGroup" target="_blank" style={{"backgroundColor":"rgba(0,0,0,.75)",
+                  <a href="https://twitter.com/LearnToHackAU" target="_blank" style={{"backgroundColor":"rgba(0,0,0,.75)",
                   "width":"30px","height":"30px","display":"inline-block","textAlign":"center","borderRadius":"2px",}}><i className="fa fa-twitter" style={{"marginTop":"8px"}}></i></a>&nbsp;&nbsp;
 
-                  <a href="https://www.linkedin.com/company/jypragroup" target="_blank" style={{"backgroundColor":"rgba(0,0,0,.75)",
-                  "width":"30px","height":"30px","display":"inline-block","textAlign":"center","borderRadius":"2px",}}><i className="fa fa-linkedin" style={{"marginTop":"8px"}}></i></a>&nbsp;&nbsp;
+                  {/*<a href="https://www.linkedin.com/company/jypragroup" target="_blank" style={{"backgroundColor":"rgba(0,0,0,.75)",
+                "width":"30px","height":"30px","display":"inline-block","textAlign":"center","borderRadius":"2px",}}><i className="fa fa-linkedin" style={{"marginTop":"8px"}}></i></a>&nbsp;&nbsp;*/}
 
                   <a href="mailto:info@learntohack.com.au" target="_blank" style={{"backgroundColor":"rgba(0,0,0,.75)",
                   "width":"30px","height":"30px","display":"inline-block","textAlign":"center","borderRadius":"2px",}}><i className="fa fa-envelope" style={{"marginTop":"8px"}}></i></a>&nbsp;&nbsp;
@@ -172,10 +172,10 @@ function Header(props) {
               <div className="section-row">
                   <h3 style={{"color":"#fff"}}>Follow us</h3>
                   <ul className="footer-social" style={{"textAlign":"center","marginRight":"10%"}}>
-                    <li><a href="https://www.facebook.com/JypraGroupAU"><i className="fa fa-facebook"></i></a></li>
-                    <li><a href="https://www.instagram.com/jypragroup/"><i className="fa fa-instagram"></i></a></li>
-                    <li><a href="https://twitter.com/JypraGroup"><i className="fa fa-twitter"></i></a></li>
-                    <li><a href="https://www.linkedin.com/company/jypragroup"><i className="fa fa-linkedin"></i></a></li>
+                    <li><a href="https://www.facebook.com/Learntohack"><i className="fa fa-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/learntohack7"><i className="fa fa-instagram"></i></a></li>
+                    <li><a href="https://twitter.com/LearnToHackAU"><i className="fa fa-twitter"></i></a></li>
+                   {/* <li><a href="https://www.linkedin.com/company/jypragroup"><i className="fa fa-linkedin"></i></a></li>*/}
                     <li><a href="mailto:info@learntohack.com.au"><i className="fa fa-google-plus"></i></a></li>
                   </ul>
                  {token? 
@@ -189,51 +189,112 @@ function Header(props) {
                  </button>}
               </div>
               </div>
-              <button style={{"width":"100%","backgroundColor":"#7abd13",
-              "padding":"10px 10px 10px 10px","color":"#fff","fontSize":"25px","textAlign":"left","marginBottom":"5%"}} >
+              <button style={{"width":"100%","backgroundColor":"#7abd13","fontFamily":"'wh-cond','Arial Narrow',sans-serif",
+              "padding":"10px 10px 10px 10px","color":"#fff","fontSize":"22px","textAlign":"left","marginBottom":"5%",
+              "letterSpacing":".01em","fontWeight":"normal","display":"block","cursor":"default"}} >
               QUICK LINKS
               </button>
-                <li  className="nav-aside-close"><Link to="/">HOME</Link></li>
+                <li  className="nav-aside-close"><Link to="/" style={{"fontSize":"16px",
+                "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+              "textTransform":"uppercase"}}>HOME</Link></li>
                 {token?
                   <>
                   {
                     token.role==='admin'?
                     <>
-                    <li className="nav-aside-close"><Link to="/allblog" >All BLOGS</Link></li>
-                    <li className="nav-aside-close"><Link to="/allforum" >All FORUMS</Link></li>
-                    <li className="nav-aside-close"><Link to="/adminsignup" >ADMIN SIGNUP</Link></li>
-                    <li className="nav-aside-close"><Link to="/admin" >USERS</Link></li>
-                    <li className="nav-aside-close"><Link to="/verifyblogs" >BLOGS</Link></li>
-                    <li className="nav-aside-close"><Link to="/verifyforums" >FORUMS</Link></li>
-                    <li className="nav-aside-close"><Link to="/admincontactus" >CONTACT US</Link></li>
-                    <li className="nav-aside-close"><Link to='/about' >ABOUT US</Link></li>
-                    <li className="nav-aside-close"><Link to="/login" onClick={logOut} >LOG OUT</Link></li>
+                    <li className="nav-aside-close" ><Link to="/allblog" style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>All BLOGS</Link></li>
+
+                    <li className="nav-aside-close"><Link to="/allforum" style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>All FORUMS</Link></li>
+
+                    <li className="nav-aside-close"><Link to="/adminsignup" style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>ADMIN SIGNUP</Link></li>
+
+                    <li className="nav-aside-close"><Link to="/admin" style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>USERS</Link></li>
+
+                    <li className="nav-aside-close"><Link to="/verifyblogs" style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>BLOGS</Link></li>
+
+                    <li className="nav-aside-close"><Link to="/verifyforums" style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>FORUMS</Link></li>
+
+                    <li className="nav-aside-close"><Link to="/admincontactus" style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>CONTACT US</Link></li>
+
+                    <li className="nav-aside-close"><Link to='/about' style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>ABOUT US</Link></li>
+
+                    <li className="nav-aside-close"><Link to="/login" onClick={logOut} style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>LOG OUT</Link></li>
                     </>
                     :<>
-                    <li className="nav-aside-close"><Link to="/login" >EDIT PROFILE</Link></li>
-                    <li className="nav-aside-close"><Link to="/allblog">ALL BLOGS</Link></li>
-                    <li className="nav-aside-close"><Link to="/allforum">ALL FORUMS</Link></li>
-                    <li className="nav-aside-close"><Link to="/myblogs">MY BLOGS</Link></li>
-                    <li className="nav-aside-close"><Link to="/myforums">MY FORUMS</Link></li>
-                    <li className="nav-aside-close"><Link to='/contactus'>CONTACT US</Link></li>
-                    <li className="nav-aside-close"><Link to='/about'>ABOUT US</Link></li>
-                    <li className="nav-aside-close"><Link to="/login" onClick={logOut}>LOG OUT</Link></li>
+                    <li className="nav-aside-close"><Link to="/login" style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>EDIT PROFILE</Link></li>
+
+                    <li className="nav-aside-close"><Link to="/allblog"style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>ALL BLOGS</Link></li>
+
+                    <li className="nav-aside-close"><Link to="/allforum" style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>ALL FORUMS</Link></li>
+
+                    <li className="nav-aside-close"><Link to="/myblogs" style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>MY BLOGS</Link></li>
+
+                    <li className="nav-aside-close"><Link to="/myforums" style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>MY FORUMS</Link></li>
+
+                    <li className="nav-aside-close"><Link to='/contactus' style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>CONTACT US</Link></li>
+
+                    <li className="nav-aside-close"><Link to='/about' style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>ABOUT US</Link></li>
+
+                    <li className="nav-aside-close"><Link to="/login" onClick={logOut} style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>LOG OUT</Link></li>
                     </>
                   }
                   </>
                  :
                    <>
-                     <li className="nav-aside-close"><Link to="/allblog">ALL BLOGS</Link></li>
-                     <li className="nav-aside-close"><Link to="/allforum">ALL FORUMS</Link></li>
-                     <li className="nav-aside-close"><Link to='/contactus'>CONTACT US</Link></li>
-                     <li className="nav-aside-close"><Link to='/about'>ABOUT US</Link></li>
+                     <li className="nav-aside-close"><Link to="/allblog" style={{"fontSize":"16px",
+                    "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                  "textTransform":"uppercase"}}>ALL BLOGS</Link></li>
+                     <li className="nav-aside-close"><Link to="/allforum" style={{"fontSize":"16px",
+                     "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                   "textTransform":"uppercase"}}>ALL FORUMS</Link></li>
+                     <li className="nav-aside-close"><Link to='/contactus' style={{"fontSize":"16px",
+                     "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                   "textTransform":"uppercase"}}>CONTACT US</Link></li>
+                     <li className="nav-aside-close"><Link to='/about' style={{"fontSize":"16px",
+                     "fontFamily":"'wh-cond','Arial Narrow',sans-serif","letterSpacing":".01em","fontWeight":"bold",
+                   "textTransform":"uppercase"}}>ABOUT US</Link></li>
                    </>}
 
               </ul>
             </div>
             <div className="section-row">
-            <button style={{"width":"100%","backgroundColor":"#7abd13",
-            "padding":"10px 10px 10px 10px","color":"#fff","fontSize":"25px","textAlign":"left","marginBottom":"5%"}} >
+            <button style={{"width":"100%","backgroundColor":"#7abd13","fontFamily":"'wh-cond','Arial Narrow',sans-serif",
+            "padding":"10px 10px 10px 10px","color":"#fff","fontSize":"22px","textAlign":"left","marginBottom":"5%",
+            "letterSpacing":".01em","fontWeight":"normal","display":"block","cursor":"default"}} >
             RECENT POSTS
             </button>
               {
@@ -256,8 +317,9 @@ function Header(props) {
 
                </div>
                <div className="section-row">
-               <button style={{"width":"100%","backgroundColor":"#7abd13",
-               "padding":"10px 10px 10px 10px","color":"#fff","fontSize":"25px","textAlign":"left","marginBottom":"5%"}} >
+               <button style={{"width":"100%","backgroundColor":"#7abd13","fontFamily":"'wh-cond','Arial Narrow',sans-serif",
+               "padding":"10px 10px 10px 10px","color":"#fff","fontSize":"22px","textAlign":"left","marginBottom":"5%",
+               "letterSpacing":".01em","fontWeight":"normal","display":"block","cursor":"default"}} >
                RECENT FORUMS
                </button>
                  {
@@ -281,8 +343,9 @@ function Header(props) {
                   </div>
                 
                   <div className="section-row">
-                  <button style={{"width":"100%","backgroundColor":"#7abd13",
-                  "padding":"10px 10px 10px 10px","color":"#fff","fontSize":"25px","textAlign":"left","marginBottom":"5%"}} >
+                  <button style={{"width":"100%","backgroundColor":"#7abd13","fontFamily":"'wh-cond','Arial Narrow',sans-serif",
+                  "padding":"10px 10px 10px 10px","color":"#fff","fontSize":"22px","textAlign":"left","marginBottom":"5%",
+                  "letterSpacing":".01em","fontWeight":"normal","display":"block","cursor":"default"}} >
                   CATEGORIES
                   </button>
                   <div className="category-widget" style={{"padding":"10px 20px 10px 20px"}}>

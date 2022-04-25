@@ -97,7 +97,7 @@ function UploadBlog() {
      setloading(true)
      if(isVerified)
      {
-        if(dataUri !== '' && text !== '' && blog.title !== '' && blog.tag !== '')
+        if(text !== '' && blog.title !== '' && blog.tag !== '')
         {
             Axios.post(`${process.env.React_App_Api_Url}/api/blog/createblog`,{
               image:url,

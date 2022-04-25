@@ -73,7 +73,7 @@ function UploadForum() {
       formData.append('file', dataUri);
       if(isVerified)
       {
-          if(dataUri !== '' && blog.desc !== '' && blog.title !== '' && blog.tag !== '')
+          if(blog.desc !== '' && blog.title !== '' && blog.tag !== '')
           {
                 Axios.post(`${process.env.React_App_Api_Url}/api/forum/createforums`,{
                 image:url,

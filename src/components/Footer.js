@@ -91,10 +91,10 @@ function Footer() {
                   </form>
                   </div>
                 <ul className="footer-social">
-                  <li><a href="https://www.facebook.com/JypraGroupAU" target="_blank"><i className="fa fa-facebook"></i></a></li>
-                  <li><a href="https://www.instagram.com/jypragroup/" target="_blank"><i className="fa fa-instagram"></i></a></li>
-                  <li><a href="https://twitter.com/JypraGroup" target="_blank"><i className="fa fa-twitter"></i></a></li>
-                  <li><a href="https://www.linkedin.com/company/jypragroup" target="_blank"><i className="fa fa-linkedin"></i></a></li>
+                  <li><a href="https://www.facebook.com/Learntohack" target="_blank"><i className="fa fa-facebook"></i></a></li>
+                  <li><a href="https://www.instagram.com/learntohack7" target="_blank"><i className="fa fa-instagram"></i></a></li>
+                  <li><a href="https://twitter.com/LearnToHackAU" target="_blank"><i className="fa fa-twitter"></i></a></li>
+                 {/* <li><a href="https://www.linkedin.com/company/jypragroup" target="_blank"><i className="fa fa-linkedin"></i></a></li>*/}
                   <li><a href="mailto:info@learntohack.com.au" target="_blank"><i className="fa fa-envelope"></i></a></li>
                 </ul>
               </div>
