@@ -21,7 +21,8 @@ function Posts() {
   }
    function getBlogByCategory()
   {
-    Axios.get(`${process.env.React_App_Api_Url}/api/blog/getblogbycategory?tag=${params.tag}`).then(blogs => {
+    var tag = params.tag.toLowerCase();
+    Axios.get(`${process.env.React_App_Api_Url}/api/blog/getblogbycategory?tag=${tag}`).then(blogs => {
       console.log('blog by category',blogs);
      setPosts(blogs.data.resData);
      setloading(false);
