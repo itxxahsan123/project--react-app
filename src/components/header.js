@@ -176,7 +176,7 @@ function Header(props) {
                     <li><a href="https://www.instagram.com/learntohack7"><i className="fa fa-instagram"></i></a></li>
                     <li><a href="https://twitter.com/LearnToHackAU"><i className="fa fa-twitter"></i></a></li>
                    {/* <li><a href="https://www.linkedin.com/company/jypragroup"><i className="fa fa-linkedin"></i></a></li>*/}
-                    <li><a href="mailto:info@learntohack.com.au"><i className="fa fa-google-plus"></i></a></li>
+                    <li><a href="mailto:info@learntohack.com.au"><i className="fa fa-envelope"></i></a></li>
                   </ul>
                  {token? 
                   <button style={{"marginTop":"5%","width":"100%","backgroundColor":"#fff","padding":"10px 10px 10px 10px","color":"#7abd13","fontSize":"20px"}} >
@@ -355,10 +355,10 @@ function Header(props) {
                         return (
                             <ul>
                               { 
-                                (index+1)%4===0 ? <li><Link to={`/allblog/${tag.tag}`} className="cat-1" style={{"color":"#fff"}}>{tag.tag}<span>{tag.count}</span></Link></li> : 
-                                (index+1)%3===0 ? <li><Link to={`/allblog/${tag.tag}`} className="cat-2" style={{"color":"#fff"}}>{tag.tag}<span>{tag.count}</span></Link></li> : 
-                                (index+1)%2===0 ? <li><Link to={`/allblog/${tag.tag}`} className="cat-3" style={{"color":"#fff"}}>{tag.tag}<span>{tag.count}</span></Link></li> : 
-                                (index)%2===0 ?<li><Link to={`/allblog/${tag.tag}`} className="cat-4" style={{"color":"#fff"}}>{tag.tag}<span>{tag.count}</span></Link></li> :''
+                                (index+1)%4===0 ? <li><Link to={`/allblog/${tag.tag}`} className="cat-1" style={{"color":"#fff",textTransform:"uppercase"}}>{tag.tag}<span>{tag.count}</span></Link></li> : 
+                                (index+1)%3===0 ? <li><Link to={`/allblog/${tag.tag}`} className="cat-2" style={{"color":"#fff",textTransform:"uppercase"}}>{tag.tag}<span>{tag.count}</span></Link></li> : 
+                                (index+1)%2===0 ? <li><Link to={`/allblog/${tag.tag}`} className="cat-3" style={{"color":"#fff",textTransform:"uppercase"}}>{tag.tag}<span>{tag.count}</span></Link></li> : 
+                                (index)%2===0 ?<li><Link to={`/allblog/${tag.tag}`} className="cat-4" style={{"color":"#fff",textTransform:"uppercase"}}>{tag.tag}<span>{tag.count}</span></Link></li> :''
                               }
                             </ul>
                         )

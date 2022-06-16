@@ -12,6 +12,7 @@ function Posts() {
   const history = useHistory();
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(0);
+  const [tag, setTag] = useState('');
   const params = useParams();
   const [loading,setloading] =useState(false);
   function richtextToplaintext(str)
@@ -19,12 +20,14 @@ function Posts() {
     var plainString = str.replace(/<[^>]+>/g, '');
     return plainString;
   }
+  // backend.learntohack.com.au
    function getBlogByCategory()
   {
     var tag = params.tag.toLowerCase();
-    Axios.get(`${process.env.React_App_Api_Url}/api/blog/getblogbycategory?tag=${tag}`).then(blogs => {
-      console.log('blog by category',blogs);
-     setPosts(blogs.data.resData);
+    setPage(page+1);
+    Axios.get(`${process.env.React_App_Api_Url}/api/blog/getblogbycategory?tag=${tag}&page_no=${page}`).then(blogs => {
+    //  setPosts(blogs.data.resData);
+     setPosts(prevPosts=>[...prevPosts,...blogs.data.resData])
      setloading(false);
     }).catch(err => {
       setloading(false);
@@ -52,7 +55,6 @@ function Posts() {
       }
       else{
         setloading(false);
-        debugger
         // setPosts(prevPosts=>{
         //   return [...new Set([...prevPosts,...res.data.blogs.map( b =>b.id)])]
         // })
@@ -87,6 +89,7 @@ function Posts() {
   useEffect(() => {
     setloading(true);
     window.scrollTo(0, 0);
+    setTag(params.tag);
     if(params.tag)
     {
       getBlogByCategory();
@@ -121,7 +124,7 @@ function Posts() {
                     <span className="post-date">{splitDate(recentblog.updatedAt)}</span>
                     </div>
                     <h3 className="post-title" ><Link to={`/post/${recentblog.id}`}>{recentblog.title}</Link></h3>
-                <span >{richtextToplaintext(recentblog.text).substring(0, 200)}.....<Link to={`/post/${recentblog.id}`}>Read More</Link></span>
+                <p >{richtextToplaintext(recentblog.text).substring(0, 50)}.....<Link to={`/post/${recentblog.id}`}>Read More</Link></p>
                 </div>
                     </div>
                   </div>
@@ -133,9 +136,16 @@ function Posts() {
           }
           <div className="col-md-12">
           <div className="section-row">
+          {
+            tag == '' || tag == undefined?
             <button className="primary-button center-block" onClick={(e)=>{getAllBlogs(e)}}>
               Load More
             </button>
+            :
+            <button className="primary-button center-block" onClick={(e)=>{getBlogByCategory(e)}}>
+              Load More
+            </button>
+          }
           </div>
         </div>
           </div>

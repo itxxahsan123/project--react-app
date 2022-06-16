@@ -114,10 +114,10 @@ function MostRead () {
                         return (
                             <ul>
                               { 
-                                (index+1)%4===0 ? <li><Link to={`/allblog/${tag.tag}`} className="cat-1">{tag.tag}<span>{tag.count}</span></Link></li> : 
-                                (index+1)%3===0 ? <li><Link to={`/allblog/${tag.tag}`} className="cat-2">{tag.tag}<span>{tag.count}</span></Link></li> : 
-                                (index+1)%2===0 ? <li><Link to={`/allblog/${tag.tag}`} className="cat-3">{tag.tag}<span>{tag.count}</span></Link></li> : 
-                                (index)%2===0 ?<li><Link to={`/allblog/${tag.tag}`} className="cat-4">{tag.tag}<span>{tag.count}</span></Link></li> :''
+                                (index+1)%4===0 ? <li><Link to={`/allblog/${tag.tag}`} className="cat-1" style={{textTransform:"uppercase"}}>{tag.tag}<span>{tag.count}</span></Link></li> : 
+                                (index+1)%3===0 ? <li><Link to={`/allblog/${tag.tag}`} className="cat-2" style={{textTransform:"uppercase"}}>{tag.tag}<span>{tag.count}</span></Link></li> : 
+                                (index+1)%2===0 ? <li><Link to={`/allblog/${tag.tag}`} className="cat-3" style={{textTransform:"uppercase"}}>{tag.tag}<span>{tag.count}</span></Link></li> : 
+                                (index)%2===0 ?<li><Link to={`/allblog/${tag.tag}`} className="cat-4" style={{textTransform:"uppercase"}}>{tag.tag}<span>{tag.count}</span></Link></li> :''
                               }
                             </ul>
                         )

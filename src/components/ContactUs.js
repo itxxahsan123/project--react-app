@@ -119,7 +119,7 @@ function ContactUs() {
                     <div className="section-row">
                         <h3 >Contact Information</h3>
                         <img src="./img/bannernew3.jpeg" style={{"width":"100%"}}/>
-                        <img src="./img/logo_1.png" alt="" className="image2" style={{"width":"30%","marginTop":"5%"}}/>
+                        {/*<img src="./img/logo_1.png" alt="" className="image2" style={{"width":"30%","marginTop":"5%"}}/>*/}
                         </div>
                 </div>
                 <div className="col-md-5 col-md-offset-1">

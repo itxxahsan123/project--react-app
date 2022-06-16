@@ -137,7 +137,7 @@ function SectionOne () {
                       <span className="post-date" style={{textTransform:"uppercase"}}>&nbsp;&nbsp;{recentblog.User?recentblog.User.firstName:''}</span>
                       </div>
                     <h3 className="post-title" ><Link to={`/post/${recentblog.id}`}>{recentblog.title}</Link></h3>
-                <p >{richtextToplaintext(recentblog.text).substring(0, 200)}.....<Link to={`/post/${recentblog.id}`}>Read More</Link></p>
+                <p >{richtextToplaintext(recentblog.text).substring(0, 100)}.....<Link to={`/post/${recentblog.id}`}>Read More</Link></p>
           </div>
                     </div>
                     </div>:''
@@ -191,7 +191,7 @@ function SectionOne () {
                               <span className="post-date" style={{textTransform:"uppercase"}}>&nbsp;&nbsp;{recentblog.User?recentblog.User.firstName:''}</span>
                               </div>
                             <h3 className="post-title"><Link to={`/post/${recentblog.id}`}>{recentblog.title}</Link></h3>
-                <p >{richtextToplaintext(recentblog.text).substring(0, 200)}.....<Link to={`/post/${recentblog.id}`}>Read More</Link></p>
+                <p >{richtextToplaintext(recentblog.text).substring(0, 100)}.....<Link to={`/post/${recentblog.id}`}>Read More</Link></p>
                 </div>
                         </div>
                       </div>   
