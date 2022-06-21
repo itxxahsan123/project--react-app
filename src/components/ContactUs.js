@@ -31,8 +31,8 @@ function ContactUs() {
                         }).then(res=>{
                             toast.success('Your Contact Us has been successfully created. Our team member will contact you shortly.');
                             setloading(false);
-                            history.replace("/");
-                            window.location.reload();
+                           // history.replace("/");
+                           // window.location.reload();
                         }).catch(err=>{
                             toast.error(`${err.response.data.message}`);
                             setloading(false);
@@ -119,7 +119,7 @@ function ContactUs() {
                     <div className="section-row">
                         <h3 >Contact Information</h3>
                         <img src="./img/bannernew3.jpeg" style={{"width":"100%"}}/>
-                        {/*<img src="./img/logo_1.png" alt="" className="image2" style={{"width":"30%","marginTop":"5%"}}/>*/}
+                        <img src="./img/logo_1.png" alt="" className="image2" style={{"width":"40%","height":"50%","marginTop":"5%"}}/>
                         </div>
                 </div>
                 <div className="col-md-5 col-md-offset-1">

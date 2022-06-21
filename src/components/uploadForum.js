@@ -202,9 +202,11 @@ function UploadForum() {
               render="explicit"
               />
             </div>
-            <button className="writeSubmit" type="submit">
-              Publish
-            </button>
+            <div className="writeFormGroup" style={{"marginTop":"3%"}}>
+            <label className="writeFile">
+            &nbsp;&nbsp;Publish&nbsp;&nbsp;<input type="submit" hidden/>
+            </label>
+            </div>
           </form>
         </div>
       )
