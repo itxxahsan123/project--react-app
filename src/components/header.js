@@ -385,7 +385,7 @@ function Header(props) {
           <div className="container" style={{"marginLeft":"-2%","width":"100%","height":"40px"}}>
               <ul className="nav-menu nav navbar-nav" >
                               <li ><Link to={`/allblog/Technology`} style={{textTransform:"uppercase",fontSize:"12px",marginTop:"-10%"}}>TECHNOLOGY</Link></li>
-                              <li ><Link to={`/allblog/Penetration testing`} style={{textTransform:"uppercase",fontSize:"12px",marginTop:"-7%"}}>PENETRATION TESTING</Link></li>
+                              <li ><Link to={`/allblog/Penetration testing`} style={{textTransform:"uppercase",fontSize:"12px",marginTop:"-7%"}} >PENETRATION TESTING</Link></li>
                               <li ><Link to={`/allblog/CTF`} style={{textTransform:"uppercase",fontSize:"12px",marginTop:"-20%"}}>CTF</Link></li>
                               <li ><Link to={`/allblog/Resources`} style={{textTransform:"uppercase",fontSize:"12px",marginTop:"-11%"}}>RESOURCES</Link></li>
                               <li ><Link to={`/allblog/Passing OSCP`} style={{textTransform:"uppercase",fontSize:"12px",marginTop:"-9%"}}>PASSING OSCP</Link></li>

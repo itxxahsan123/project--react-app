@@ -83,14 +83,15 @@ function Posts() {
     setloading(true);
     window.scrollTo(0, 0);
     setTag(params.tag);
+    setPage(0);
     if (params.tag) {
-      getBlogByCategory();
       setPage(0);
+      getBlogByCategory();
       setPosts([]);
     }
     else {
-      getAllBlogs();
       setPage(0);
+      getAllBlogs();
       setPosts([]);
     }
   }, [history.location.pathname])
