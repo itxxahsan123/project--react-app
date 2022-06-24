@@ -37,7 +37,7 @@ function Header(props) {
   }
   function getTags()
   {
-    Axios.get(`${process.env.React_App_Api_Url}/api/blog/getAllblogs`).then(blogs => {
+    Axios.get(`${process.env.React_App_Api_Url}/api/blog/getAllblogs?page_no=0`).then(blogs => {
       console.log('getTAgs',blogs);
       setrecentBlogs(blogs.data.blogs)
     }).catch(err => {

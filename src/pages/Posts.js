@@ -85,9 +85,13 @@ function Posts() {
     setTag(params.tag);
     if (params.tag) {
       getBlogByCategory();
+      setPage(0);
+      setPosts([]);
     }
     else {
       getAllBlogs();
+      setPage(0);
+      setPosts([]);
     }
   }, [history.location.pathname])
   return (

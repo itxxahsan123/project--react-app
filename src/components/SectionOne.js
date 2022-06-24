@@ -27,7 +27,7 @@ function SectionOne () {
   }
   function componentDidMount()
     {
-      Axios.get(`${process.env.React_App_Api_Url}/api/blog/getAllblogs`).then(blogs => {
+      Axios.get(`${process.env.React_App_Api_Url}/api/blog/getAllblogs?page_no=0`).then(blogs => {
         console.log('All blogs',blogs);
         setRecentBlogs(blogs.data.blogs);
         setloading(false);
