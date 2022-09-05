@@ -1,133 +1,260 @@
-import React,{ useEffect,useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Axios from 'axios';
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
-toast.configure()
-  
+toast.configure();
+
 function About() {
-    const [mostReadBlogs, setMostReadBlogs] = useState([]);
-    const [featuredblogs, setfeaturedblogs] = useState([]); 
-    const [loading,setloading] =useState(false);
-    function splitDate(x)
-  {
-        let y = x.split('T');
-        return y[0];
+  const [mostReadBlogs, setMostReadBlogs] = useState([]);
+  const [featuredblogs, setfeaturedblogs] = useState([]);
+  const [loading, setloading] = useState(false);
+  function splitDate(x) {
+    let y = x.split("T");
+    return y[0];
   }
-  function mostRead()
-    {
-        Axios.get(`${process.env.React_App_Api_Url}/api/blog/getmostreadblogs`).then(blogs => {
-            setMostReadBlogs(blogs.data.tag);
-            setloading(false);
-          }).catch(err => {
-            toast.error('No Most read blogs Found');
-          });
-    }
-    function featuredBlogs()
-    {
-        Axios.get(`${process.env.React_App_Api_Url}/api/blog/getfeaturedblogs`).then(blogs => {
-            setfeaturedblogs(blogs.data.tag)
-            setloading(false);
-          }).catch(err => {
-            toast.error('No featured blogsFound');
-            setloading(false);
-        });
-    }
-      useEffect(()=> {
-        setloading(true);
-        mostRead()
-        featuredBlogs()
-        window.scrollTo(0, 0);
+  function mostRead() {
+    Axios.get(`${process.env.React_App_Api_Url}/api/blog/getmostreadblogs`)
+      .then((blogs) => {
+        setMostReadBlogs(blogs.data.tag);
+        setloading(false);
+      })
+      .catch((err) => {
+        toast.error("No Most read blogs Found");
+      });
+  }
+  function featuredBlogs() {
+    Axios.get(`${process.env.React_App_Api_Url}/api/blog/getfeaturedblogs`)
+      .then((blogs) => {
+        setfeaturedblogs(blogs.data.tag);
+        setloading(false);
+      })
+      .catch((err) => {
+        toast.error("No featured blogsFound");
+        setloading(false);
+      });
+  }
+  useEffect(() => {
+    setloading(true);
+    mostRead();
+    featuredBlogs();
+    window.scrollTo(0, 0);
+  }, []);
+  return (
+    <div className="section">
+      {loading ? <div class="loading"></div> : ""}
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8">
+            <div className="section-row">
+              <h3>About Us</h3>
+              <p style={{ textAlign: "justify" }}>
+                Learntohack.com.au compiles all of the biggest news, articles,
+                videos, and much more on Cyber Security, Penetration Testing,
+                Ethical Hacking, Vulnerabilities, Data encryption and Threat
+                Analysis into a single location. Our overall purpose is to
+                provide a helpful and practical platform to assist you in
+                gaining a better knowledge and a faster overview of everything
+                going on in the field of Cyber Security. Learntohack.com.au was
+                created by cyber security specialists — qualified experts with
+                an in-depth understanding of the most recent threats and
+                security practices. The blog seeks to appeal to all levels of
+                skill, from experienced hackers to those solely searching for
+                tips on how to efficiently protect their information. A
+                significant breach or type of malware is discovered almost every
+                day, but Learntohack.com.au is not here to hype up risks or
+                mislead people but to deliver clear, precise guidance and
+                insight into the challenges that today's technology users face.
+              </p>
+              <figure className="figure-img">
+                <img
+                  className="img-responsive"
+                  src="./img/about-1.jpg"
+                  alt=""
+                />
+              </figure>
+              <h3>Article Submission</h3>
+              <p style={{ textAlign: "justify" }}>
+                We welcome posts from enthusiastic users all over the world at
+                Learntohack.com.au, so please create an account on our portal
+                and submit the article. Once the content is reviewed, the
+                article will be posted on our blog.
+              </p>
+            </div>
+            <div className="row section-row">
+              {/* <div className="col-md-6">
+                <figure className="figure-img">
+                  <img
+                    className="img-responsive"
+                    src="./img/about-2.jpg"
+                    alt=""
+                  />
+                </figure>
+              </div> */}
+              <div className="col-md-12" style={{ textAlign: "justify" }}>
+                <h3>Our Guidelines</h3>
+                <p>
+                  We would like to be certain that everyone on
+                  Learntohack.com.au respects the blog posted and other members,
+                  so here are some guidelines to follow:
+                </p>
+                <ul className="list-style">
+                  <li>
+                    <p>
+                      To begin with, Learntohack.com.au is a community, so
+                      please treat people with respect.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Learntohack.com.au is not responsible for the actions of
+                      its members, but any person who engages in improper
+                      behaviour may be suspended.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Views and opinions expressed by members are their own, and
+                      we accepts no accountability for comments.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Racist, sexist, ageist, or other discriminating remarks
+                      are not tolerated. If you come across any content that
+                      offends you, please inform us right away and we will look
+                      into it.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Please respect the copyrights and privacy of others with
+                      the content you submit.
+                    </p>
+                  </li>
+                  <li>
+                    <p>Be truthful.</p>
+                  </li>
+                  <li>
+                    <p>
+                      Posts and comments should not be used to sell your
+                      products or services.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      We might reuse your comments or articles, or publish them
+                      via our Social media channels.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      It is forbidden to promote this website through
+                      inappropriate mail.
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <h3>Contact Us</h3>
+              <p style={{ textAlign: "justify" }}>
+                If you have any feedback or issues, please contact us at &nbsp;
+                <b>
+                  <a href="mailto:info@learntohack.com.au">
+                    info@learntohack.com.au
+                  </a>
+                </b>
+                . We eagerly await your response. You may also connect with us
+                on our social media to get the latest news.
+              </p>
+            </div>
+          </div>
 
-      },[]);
-    return (
-        <div className="section">
-        {loading?<div class="loading"></div>:''} 
-        <div className="container">
-            <div className="row">
-                <div className="col-md-8">
-                    <div className="section-row">
-                        <h3>About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel. Ut eum verterem perpetua scribentur.</p>
-                        <figure className="figure-img">
-                            <img className="img-responsive" src="./img/about-1.jpg" alt="" />
-                        </figure>
-                        <p>Vix mollis admodum ei, vis legimus voluptatum ut, vis reprimique efficiendi sadipscing ut. Eam ex animal assueverit consectetuer, et nominati maluisset repudiare nec. Rebum aperiam vis ne, ex summo aliquando dissentiunt vim. Quo ut cibo docendi. Suscipit indoctum ne quo, ne solet offendit hendrerit nec. Case malorum evertitur ei vel.</p>
-                    </div>
-                    <div className="row section-row">
-                        <div className="col-md-6">
-                            <figure className="figure-img">
-                                <img className="img-responsive" src="./img/about-2.jpg" alt="" />
-                            </figure>
-                        </div>
-                        <div className="col-md-6">
-                            <h3>Our Mission</h3>
-                            <p>Id usu mutat debet tempor, fugit omnesque posidonium nec ei. An assum labitur ocurreret qui, eam aliquid ornatus tibique ut.</p>
-                            <ul className="list-style">
-                                <li><p>Vix mollis admodum ei, vis legimus voluptatum ut.</p></li>
-                                <li><p>Cu cum alia vide malis. Vel aliquid facilis adolescens.</p></li>
-                                <li><p>Laudem rationibus vim id. Te per illum ornatus.</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="col-md-4">
-                    <div className="aside-widget">
-                        <div className="section-title">
-                            <h2>Most Read</h2>
-                        </div>
-                        {
-                            mostReadBlogs.length!=0 ?
-                            mostReadBlogs.map( (mostReadBlog,index) => {
-                              return (
-                                <>
-                                    {
-                                        index<5?                                       
-                                        <div className="post post-widget">
-                                        <Link className="post-img" to={`/post/${mostReadBlog.id}`}><img src={mostReadBlog.image} alt="" style={{"height":"90px"}}/></Link>
-                                        <div className="post-body">
-                                            <h3 className="post-title"><Link to={`/post/${mostReadBlog.id}`}>{mostReadBlog.title}</Link></h3>
-                                        </div>
-                                        </div>:''
-                                    }
-
-    
-                                </>
-                                )
-                              }):''
-                        }
-                      
-                    </div>
-                    <div className="aside-widget">
-                        <div className="section-title">
-                            <h2>Featured Posts</h2>
-                        </div>
-                        {
-                            featuredblogs.length!=0 ? featuredblogs.map( (featuredblog,index) => {
-                                return (
-                                  <>
-                                  {
-                                      index<5?
-                                      <div className="post post-thumb">
-                                      <Link className="post-img" to={`/post/${featuredblog.id}`}><img src={featuredblog.image} alt="" style={{"height":"176px"}}/></Link>
-                                      <div className="post-body">
-                                          <div className="post-meta">
-                                              <Link className="post-category cat-3" to={`/post/${featuredblog.id}`}>{featuredblog.tag}</Link>
-                                              <span className="post-date">{splitDate(featuredblog.updatedAt)}</span>
-                                          </div>
-                                          <h3 className="post-title"><Link to={`/post/${featuredblog.id}`}>{featuredblog.title}</Link></h3>
-                                      </div>
-                                  </div>:''
-                                  }
-
-                                  </>
-                                )
-                                }):''
-                        }
-                   </div>
-                    {/*<div className="aside-widget">
+          <div className="col-md-4">
+            <div className="aside-widget">
+              <div className="section-title">
+                <h2>Most Read</h2>
+              </div>
+              {mostReadBlogs.length != 0
+                ? mostReadBlogs.map((mostReadBlog, index) => {
+                    return (
+                      <>
+                        {index < 5 ? (
+                          <div className="post post-widget">
+                            <Link
+                              className="post-img"
+                              to={`/post/${mostReadBlog.id}`}
+                            >
+                              <img
+                                src={mostReadBlog.image}
+                                alt=""
+                                style={{ height: "90px" }}
+                              />
+                            </Link>
+                            <div className="post-body">
+                              <h3 className="post-title">
+                                <Link to={`/post/${mostReadBlog.id}`}>
+                                  {mostReadBlog.title}
+                                </Link>
+                              </h3>
+                            </div>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </>
+                    );
+                  })
+                : ""}
+            </div>
+            <div className="aside-widget">
+              <div className="section-title">
+                <h2>Featured Posts</h2>
+              </div>
+              {featuredblogs.length != 0
+                ? featuredblogs.map((featuredblog, index) => {
+                    return (
+                      <>
+                        {index < 5 ? (
+                          <div className="post post-thumb">
+                            <Link
+                              className="post-img"
+                              to={`/post/${featuredblog.id}`}
+                            >
+                              <img
+                                src={featuredblog.image}
+                                alt=""
+                                style={{ height: "176px" }}
+                              />
+                            </Link>
+                            <div className="post-body">
+                              <div className="post-meta">
+                                <Link
+                                  className="post-category cat-3"
+                                  to={`/post/${featuredblog.id}`}
+                                >
+                                  {featuredblog.tag}
+                                </Link>
+                                <span className="post-date">
+                                  {splitDate(featuredblog.updatedAt)}
+                                </span>
+                              </div>
+                              <h3 className="post-title">
+                                <Link to={`/post/${featuredblog.id}`}>
+                                  {featuredblog.title}
+                                </Link>
+                              </h3>
+                            </div>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </>
+                    );
+                  })
+                : ""}
+            </div>
+            {/*<div className="aside-widget">
                         <div className="section-title">
                             <h2>Catagories</h2>
                         </div>
@@ -167,11 +294,11 @@ function About() {
                             </ul>
                         </div>
                     </div>*/}
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-    )
+  );
 }
 
 export default About;
